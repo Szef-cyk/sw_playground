@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: var(--sith-color);
+    height: 40rem;
+    width: 27rem;
+    margin-top: 3rem;
+    transition: 0.15s;
+    border-radius: 1%;
+    box-shadow: 2px 2px 50px 6px rgb(220, 220, 220);
+}
+
+.card:hover {
+    transform: scale(1.04);
+}
+
+.image {
+    margin-top: 8%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 50%;
+    background: var(--white-color);
+}
+
+.info {
+    margin-top: 8%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 35%;
+    background: var(--white-color);
+}
+
+.name {
+    text-align: center;
+    padding-top: 0.5rem;
+    font-size: 1.5rem;
+
+}
+
+.details {
+    padding-left: 3.5%;
+    padding-bottom: 2.5%;
+    font-size: 1.2rem;
+    margin: 0;
+}

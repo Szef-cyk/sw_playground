@@ -1,0 +1,14 @@
+.container {
+    background-color: var(--bg-color);
+    height: 7.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* padding-left: 10rem */
+}
+
+.text {
+    color: var(--accent-color);
+    font-size: 3rem;
+    text-decoration: none;
+}
