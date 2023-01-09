@@ -1,7 +1,7 @@
 import { AnyAction } from "@reduxjs/toolkit"
 import { Character, charactersState } from "../types/types";
 
-const initialState: Character[] = []
+export const initialState: Character[] = []
 
 // type Action = {
 //     type: string,
@@ -17,24 +17,14 @@ const initialState: Character[] = []
 //     const maxId = characters.reduce((maxId, character) => Math.max(character.id, maxId), -1);
 //     return maxId + 1;
 // }
-const nextCharacterId = () => {
-    return
-}
-
 
 export default function charactersSlice(state = initialState, action: AnyAction): Character[] {
+    console.log(state)
     switch (action.type) {
         case "add": {
-            const { name, height, gender, eyecolor } = action.payload
             return [
                 ...state,
-                {
-                    // id: nextCharacterId(state),
-                    name,
-                    height,
-                    gender,
-                    eyecolor
-                }
+                action.payload
             ];
         }
         default:

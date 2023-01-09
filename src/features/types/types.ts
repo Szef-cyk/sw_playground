@@ -4,7 +4,7 @@ export enum Gender {
 }
 
 export interface Character {
-    // id: number,
+    id: string,
     name: string,
     height: number,
     gender: Gender,
@@ -12,7 +12,6 @@ export interface Character {
 }
 
 export type charactersState = {
-    name: string
     characters: Character[]
 }
 

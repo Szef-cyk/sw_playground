@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import About from './pages/About';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
+import Deck from './pages/Deck';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddCharacter } from './actions';
 import { Gender } from './features/types/types';
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/deck" element={<Deck />} />
         <Route path="*" element={<>Ta strona nie istnieje</>} />
       </Routes>
     </>

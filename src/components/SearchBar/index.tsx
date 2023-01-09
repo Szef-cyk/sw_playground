@@ -25,6 +25,9 @@ const SearchBar: React.FC = () => {
     };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        const nextCharacterId = (): string => {
+            return new Date().getTime().toString()
+        }
         event.preventDefault();
         formRef.current?.reset()
         await axios(`/${formData.input}`, {
@@ -33,14 +36,15 @@ const SearchBar: React.FC = () => {
         }).then(response => {
             const data = response.data
             dispatch(AddCharacter({
+                id: nextCharacterId(),
                 eyecolor: data.eye_color,
                 gender: data.gender,
                 height: data.height,
                 name: data.name
             }))
+
             console.log(response.data);
         });
-        // dispatch(AddCharacter({ eyecolor: 'red', gender: Gender.MALE, height: 152, name: 'Darth Sidious' }))
         setFlag(true)
     };
 
