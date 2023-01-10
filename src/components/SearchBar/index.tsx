@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useRef, useCallback } from 'react'
+import React, { FormEvent, useState, useRef, useCallback, MouseEventHandler } from 'react'
 import styles from './index.module.css'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -6,31 +6,20 @@ import { AddCharacter } from '../../redux/actions';
 
 
 const SearchBar: React.FC = () => {
-    const [formData, setFormData] = useState({
-        input: ''
-    });
-    const [flag, setFlag] = useState(false)
-    const formRef = useRef<HTMLFormElement>(null)
 
-    const reset = useCallback(() => {
-        setFlag(false)
-        setFormData({
-            input: ''
-        })
-    }, [])
+    const usedNumbers: number[] = []
 
-    const handleChange = (event: FormEvent<HTMLInputElement>) => {
-        const { value } = event.currentTarget;
-        setFormData({ input: value });
-    };
+    const handleSubmit = async () => {
+        let randomNumber = Math.floor(Math.random() * (83 - 1 + 1) + 1);
+        while (usedNumbers.includes(randomNumber)) {
+            randomNumber = Math.floor(Math.random() * (83 - 1 + 1) + 1);
+        }
+        usedNumbers.push(randomNumber);
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         const nextCharacterId = (): string => {
             return new Date().getTime().toString()
         }
-        event.preventDefault();
-        formRef.current?.reset()
-        await axios(`/${formData.input}`, {
+        await axios(`/${randomNumber}`, {
             method: 'get',
             baseURL: 'https://swapi.dev/api/people/',
         }).then(response => {
@@ -43,19 +32,13 @@ const SearchBar: React.FC = () => {
                 name: data.name
             }))
         });
-        setFlag(true)
     };
 
     const dispatch = useDispatch();
 
     return (
         <>
-            <form ref={formRef} onSubmit={handleSubmit} autoComplete='off'>
-                <label htmlFor="number"></label>
-                <input type="number" name="number" onChange={handleChange} />
-                {!flag ? null : null}
-            </form>
-            <button onClick={reset}>clear the results</button>
+            <button onClick={handleSubmit as any}>Get a Card!</button>
         </>
     )
 }
