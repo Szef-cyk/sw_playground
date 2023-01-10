@@ -2,8 +2,8 @@ import React, { FormEvent, useState, useRef, useCallback } from 'react'
 import styles from './index.module.css'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { AddCharacter } from '../../actions';
-import { Gender } from '../../features/types/types';
+import { AddCharacter } from '../../redux/actions';
+
 
 const SearchBar: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -42,8 +42,6 @@ const SearchBar: React.FC = () => {
                 height: data.height,
                 name: data.name
             }))
-
-            console.log(response.data);
         });
         setFlag(true)
     };

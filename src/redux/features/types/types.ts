@@ -11,7 +11,6 @@ export interface Character {
     eyecolor: string
 }
 
-export type charactersState = {
-    characters: Character[]
+export interface Deck {
+    character: Character
 }
-

@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router';
 import About from './pages/About';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Deck from './pages/Deck';
-import { useDispatch, useSelector } from 'react-redux';
-import { AddCharacter } from './actions';
-import { Gender } from './features/types/types';
-import { selectCharacter } from './selectors';
-import { RootState } from './store';
+
 
 function App() {
 

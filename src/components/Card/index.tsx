@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-import { selectCharacter, selectLastCharacter } from '../../selectors';
-import { RootState, store } from '../../store';
+import { MouseEventHandler } from 'react';
+import { connect, useSelector } from 'react-redux';
+import { selectLastCharacter } from '../../redux/selectors';
+import { AddToDeck } from '../../redux/actions';
 import styles from './index.module.css'
-import { Character } from '../../features/types/types';
+import { useDispatch } from 'react-redux';
+import { Character } from '../../redux/features/types/types';
+import { Dispatch } from 'redux';
+import { RootState } from '../../redux/store';
+
 const Card = () => {
-    // const selectID = (state: RootState): string => state.characters[0].id
 
-    // const id = useSelector((state: RootState) => selectID(state))
-
-    const name = 'Luke Skywalker'
     const character = useSelector(selectLastCharacter);
+    const dispatch = useDispatch()
+
+    const handleSubmit = () => {
+        dispatch(AddToDeck(character))
+    }
 
     return (
         <div className={styles.container}>
@@ -21,7 +26,7 @@ const Card = () => {
                     <p className={styles.details}>Height: {character?.height}</p>
                     <p className={styles.details}>Gender: {character?.gender}</p>
                     <p className={styles.details}>Eye Color: {character?.eyecolor}</p>
-                    <button>Add To Your Collection</button>
+                    <button onClick={handleSubmit as any}>Add To Your Collection</button>
                 </div>
             </div>
         </div>
