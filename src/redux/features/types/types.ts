@@ -8,9 +8,15 @@ export interface Character {
     name: string,
     height: number,
     gender: Gender,
-    eyecolor: string
+    eyecolor: string,
+    attack: number,
+    type: string
 }
 
 export interface Deck {
     character: Character
+}
+
+export interface Flag {
+    isVisible: boolean
 }

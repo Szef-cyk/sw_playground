@@ -6,7 +6,9 @@
   --light-color: #a5e2ff;
   --accent-color: #fdb44b;
   --accent-lighter-color: #fddfa5;
-  --sith-color: rgb(200, 0, 0);
+  --sith-color: rgb(144, 1, 1);
+  --sith-bg-color: rgb(222, 63, 63);
+  --jedi-color: #003780;
   --white-color: rgba(252, 250, 246, 1);
   --text-color: #707070;
 }

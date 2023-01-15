@@ -4,3 +4,5 @@ export const selectCharacter = (state: RootState, name: string) => state.charact
 export const selectLastCharacter = (state: RootState) => state.characters[state.characters.length - 1];
 // export const selectLastCharacter = (state: RootState) => state.characters.pop();
 export const selectDeck = (state: RootState) => state.deck
+
+export const selectFlag = (state: RootState) => state.flag.isVisible

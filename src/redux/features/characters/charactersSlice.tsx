@@ -6,6 +6,7 @@ export default function charactersSlice(state: Character[] = [], action: AnyActi
         case "add": {
             return [...state, action.payload]
         };
+
         default:
             return state;
     }

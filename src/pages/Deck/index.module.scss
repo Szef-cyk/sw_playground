@@ -1,0 +1,88 @@
+.heading {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0
+}
+
+.deck_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+
+.card {
+    background: #003780;
+    height: 40rem;
+    width: 27rem;
+    transition: 0.15s;
+    border-radius: 1%;
+}
+
+
+.card:hover {
+    transform: scale(1.04);
+}
+
+.header {
+    position: relative;
+    bottom: 0.65rem;
+    background-color: var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    font-size: 2rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.image {
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 50%;
+    background: var(--white-color);
+}
+
+.info {
+    margin-top: -14%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 4.5rem;
+    width: 90%;
+    height: 23%;
+    background: var(--white-color);
+}
+
+.attack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    bottom: 2rem;
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.details {
+    padding-left: 3.5%;
+    padding-bottom: 2.5%;
+    font-size: 1.2rem;
+    margin: 0;
+}
