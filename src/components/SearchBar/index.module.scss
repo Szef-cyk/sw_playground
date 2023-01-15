@@ -9,11 +9,8 @@
     padding: 1.5rem 0 0
 }
 
-.heading {
-    font-size: 1.5rem;
-    padding: 1rem 3rem;
-    color: darkgray;
-    text-transform: uppercase;
+.clicked {
+    pointer-events: none;
 }
 
 .button {
@@ -22,33 +19,99 @@
     position: relative;
     overflow: hidden;
     padding: 1rem 0;
+
+    &:hover {
+        box-shadow: 1px 1px 25px 10px var(--blue-lightsaber);
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg,
+                transparent,
+                var(--blue-lightsaber),
+                transparent);
+        transition: all 650ms;
+    }
+
+    &:hover:before {
+        left: 100%;
+    }
 }
 
-.clicked {
-    pointer-events: none;
+.heading {
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    text-transform: uppercase;
 }
 
-.button:hover {
-    box-shadow: 1px 1px 25px 10px rgba(63, 116, 238, 0.625);
+.buttonAdd {
+    text-decoration: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 0;
+
+    &:hover {
+
+        box-shadow: 1px 1px 25px 10px var(--green-lightsaber);
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg,
+                transparent,
+                var(--green-lightsaber),
+                transparent);
+        transition: all 650ms;
+    }
+
+    &:hover:before {
+        left: 100%;
+    }
 }
 
-.button:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg,
-            transparent,
-            rgba(63, 116, 238, 0.625),
-            transparent);
-    transition: all 650ms;
+.buttonDispose {
+    text-decoration: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 0;
+
+    &:hover {
+
+        box-shadow: 1px 1px 25px 10px var(--red-lightsaber);
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg,
+                transparent,
+                var(--red-lightsaber),
+                transparent);
+        transition: all 650ms;
+    }
+
+    &:hover:before {
+        left: 100%;
+    }
 }
 
-.button:hover:before {
-    left: 100%;
-}
+
 
 .flexContainer {
     display: flex;
@@ -68,7 +131,6 @@
 .row1>* {
     padding: 1rem;
     width: 50%;
-    // flex-grow: 1;
     margin: auto;
     text-transform: uppercase;
     font-size: 1.1rem;

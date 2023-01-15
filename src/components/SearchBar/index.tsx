@@ -111,8 +111,8 @@ const SearchBar: React.FC = () => {
                     {useSelector(selectFlag) ?
                         <div className={styles.flexContainer}>
                             <div className={styles.row1}>
-                                <button onClick={handleSubmit2}>Add To Your Collection</button>
-                                <button onClick={handleSubmit3}>Dispose Card</button>
+                                <button onClick={handleSubmit2} className={styles.buttonAdd}>Add To Your Collection</button>
+                                <button onClick={handleSubmit3} className={styles.buttonDispose}>Dispose Card</button>
                             </div>
                             <div className={styles.row2}>
                                 <Card />

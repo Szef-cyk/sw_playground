@@ -11,6 +11,9 @@
   --jedi-color: #003780;
   --white-color: rgba(252, 250, 246, 1);
   --text-color: #707070;
+  --blue-lightsaber: rgba(63, 116, 238, 0.625);
+  --green-lightsaber: rgba(82, 210, 53, 0.625);
+  --red-lightsaber: rgba(217, 53, 53, 0.625);
 }
 
 body {
