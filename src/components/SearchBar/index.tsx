@@ -1,25 +1,50 @@
-import React, { FormEvent, useState, useRef, useCallback, MouseEventHandler, RefObject } from 'react'
+import React, { useState, useRef, RefObject, useCallback, useEffect } from 'react'
 import styles from './index.module.scss'
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddCharacter, AddToDeck, SwitchFlag } from '../../redux/actions';
 import Card from '../Card';
 import { selectFlag, selectLastCharacter } from '../../redux/selectors';
 import cn from 'classnames';
+import { usePeople } from '../../apollo/hooks/usePeople';
+// import axios from 'axios';
+// import { Person } from '../../redux/features/types/types';
 
 interface Ref {
     ref: RefObject<HTMLButtonElement>
 }
 
 const SearchBar: React.FC = () => {
+
     const [active, setActive] = useState(false)
     const dispatch = useDispatch();
     const usedNumbers: number[] = []
     const ref: Ref = { ref: useRef(null) };
+    const objPeople = usePeople().data.allPeople.people
 
-    const handleSubmit = async () => {
+    // const [data, setData] = useState<Person[]>([])
+    // const getData = useCallback(async () => {  //Works just as intended!
+    //     const people: Person[] = []
+    //     console.log('start')
+    //     for (let i = 1; i <= 9; i++) {
+    //         await axios(`/?page=${i}`, {
+    //             method: 'get',
+    //             baseURL: 'https://swapi.dev/api/people/',
+    //         }).then(response => {
+    //             console.log(`${i}`, 'page')
+    //             const res = response.data.results
+    //             people.push(res)
+    //             if (i === 9) {
+    //                 setData(people.flat())
+    //             }
+    //         })
+    //     }
+    // }, [])
+    // useEffect(() => {
+    //     getData()
+    // }, [getData])   
+
+    const handleSubmit = () => {
         setActive(!active)
-
         const heroes: string[] = ['Luke Skywalker', 'C-3PO', 'R2-D2', 'Leia Organa', 'Obi-Wan Kenobi', 'Anakin Skywalker', 'Chewbacca', 'Han Solo', 'Yoda', 'Qui-Gon Jinn', 'Padmé Amidala', 'Mace Windu']
         const villains: string[] = ['Darth Vader', 'Wilhuff Tarkin', 'Palpatine', 'Darth Maul', 'Dooku', 'Grievous']
         const jedi: string[] = ['Ki-Adi-Mundi', 'Kit Fisto', 'Eeth Koth', 'Adi Gallia', 'Saesee Tiin', 'Yarael Poof', 'Plo Koon', 'Luminara Unduli', 'Barriss Offee', 'Jocasta Nu', 'Shaak Ti', 'Aayla Secura']
@@ -66,25 +91,23 @@ const SearchBar: React.FC = () => {
         }
 
         console.log(randomNumber)
-        await axios(`/${randomNumber}`, {
-            method: 'get',
-            baseURL: 'https://swapi.dev/api/people/',
-        }).then(response => {
-            const data = response.data
-            const attack = calculateAttack(data.name)
-            const type = calculateType(data.name)
-            dispatch(AddCharacter({
-                id: nextCharacterId(),
-                eyecolor: data.eye_color,
-                gender: data.gender,
-                height: data.height,
-                name: data.name,
-                attack: attack,
-                type: type
-            }))
-            dispatch(SwitchFlag())
-        });
+
+        const character = objPeople[randomNumber]
+        const attack = calculateAttack(character.name)
+        const type = calculateType(character.name)
+        dispatch(AddCharacter({
+            id: nextCharacterId(),
+            eyecolor: character.eye_color,
+            gender: character.gender,
+            height: character.height,
+            name: character.name,
+            attack: attack,
+            type: type
+        }))
+
+        dispatch(SwitchFlag())
     };
+
 
     const character = useSelector(selectLastCharacter);
 
@@ -126,3 +149,5 @@ const SearchBar: React.FC = () => {
 }
 
 export default SearchBar
+
+

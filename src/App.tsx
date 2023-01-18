@@ -7,6 +7,7 @@ import Play from './pages/Play';
 import styles from './app.module.scss'
 import homeBackground from './assets/homeBackground.jpg'
 
+
 function App() {
   return (
     <>

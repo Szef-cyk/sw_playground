@@ -2,7 +2,7 @@ import styles from '../../components/Card/index.module.scss' //STYLES COME FROM 
 import cn from 'classnames';
 interface DeckCardProps {
     name: string;
-    height: number;
+    height: string;
     gender: string;
     eyecolor: string;
     margin: string;
