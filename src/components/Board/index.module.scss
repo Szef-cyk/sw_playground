@@ -3,7 +3,10 @@
     background-position: center;
 }
 
+//GRID LAYOUT
+
 .boardContainer {
+    column-gap: 100%;
     padding-top: 10vh;
     padding-left: 10vh;
     height: 80vh;
@@ -13,44 +16,57 @@
 }
 
 .specialCard1 {
+    column-gap: 100%;
     grid-row: 1;
-    border: 2px solid var(--accent-color)
+    // border: 2px solid var(--accent-color)
 }
 
 .specialCard2 {
+    column-gap: 100%;
     grid-row: 2;
-    border: 2px solid var(--accent-color)
+    // border: 2px solid var(--accent-color)
 }
 
-.specialCard {
-    border: 2px solid var(--accent-color);
-    width: 7 0%;
-    height: 90%;
-    margin: auto;
-}
 
 .cardTop1 {
     grid-row: 1;
     grid-column: 2;
-    border: 2px solid var(--white-color)
+    // border: 2px solid var(--white-color)
 }
 
 .cardTop2 {
     grid-row: 1;
     grid-column: 3;
-    border: 2px solid var(--white-color)
+    // border: 2px solid var(--white-color)
 }
 
 .cardBottom1 {
     grid-row: 2;
     grid-column: 2;
-    border: 2px solid var(--white-color)
+    // border: 2px solid var(--white-color)
 }
 
 .cardBottom2 {
     grid-row: 2;
     grid-column: 3;
-    border: 2px solid var(--white-color)
+    // border: 2px solid var(--white-color)
+}
+
+//CARDS THAT DISPLAY
+
+.card {
+    border: 2px solid var(--white-color);
+    width: 70%;
+    height: 90%;
+    margin: auto;
+
+}
+
+.specialCard {
+    border: 2px solid var(--accent-color);
+    width: 70%;
+    height: 90%;
+    margin: auto;
 }
 
 .button {
