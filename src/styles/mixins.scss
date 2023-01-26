@@ -1,0 +1,160 @@
+//CARD COMPONENT 
+
+@mixin containerCard {
+    display: flex;
+    justify-content: center;
+
+}
+
+@mixin cardCard {
+    position: relative;
+    border: 5px solid rgb(135, 135, 135);
+    background: silver;
+    height: 40rem;
+    width: 27rem;
+    transition: 0.15s;
+    border-radius: 1%;
+    box-shadow: 2px 2px 50px 6px rgb(220, 220, 220);
+}
+
+@mixin heroCard {
+    border: 5px solid var(--accent-color);
+    background: var(--jedi-color);
+
+    .header {
+        border: 5px solid var(--accent-color);
+        background-color: var(--bg-color);
+        color: var(--accent-color);
+    }
+
+    .image {
+        border: 5px solid var(--accent-color);
+        background: var(--white-color);
+    }
+
+    .info {
+        border: 5px solid var(--accent-color);
+    }
+
+    .attack {
+        border: 5px solid var(--accent-color);
+        background-color: var(--bg-color);
+        color: var(--accent-color);
+    }
+}
+
+@mixin villainCard {
+    border: 5px solid var(--accent-color);
+
+    background: var(--sith-color);
+
+    .header {
+        border: 5px solid var(--accent-color);
+        background-color: var(--sith-bg-color);
+        color: var(--accent-color);
+    }
+
+    .image {
+        border: 5px solid var(--accent-color);
+        background: var(--white-color);
+    }
+
+    .info {
+        border: 5px solid var(--accent-color);
+    }
+
+    .attack {
+        border: 5px solid var(--accent-color);
+        background-color: var(--sith-bg-color);
+        color: var(--accent-color);
+    }
+}
+
+@mixin card-hover {
+    &:hover {
+        transform: scale(1.04);
+        z-index: 2
+    }
+
+    ;
+}
+
+@mixin headerCard {
+    border: 5px solid rgb(135, 135, 135);
+    background-color: rgb(160, 160, 160);
+    transform: translate(0, -0.72rem);
+    color: var(--white-color);
+    font-size: 2rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+@mixin imageCard {
+    border: 5px solid rgb(135, 135, 135);
+    background: var(--white-color);
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 50%;
+}
+
+@mixin infoCard {
+    border: 5px solid rgb(135, 135, 135);
+    background: var(--white-color);
+    margin-top: -14%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.5rem;
+    width: 90%;
+    height: 23%;
+}
+
+@mixin detailsCard {
+    padding-left: 3.5%;
+    padding-bottom: 2.5%;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+@mixin attackCard {
+    border: 5px solid rgb(135, 135, 135);
+    background-color: rgb(160, 160, 160);
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    bottom: 2rem;
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+//DECK LAYOUT
+
+@mixin headingDeck {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--white-color);
+}
+
+@mixin containerDeck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0
+}
+
+@mixin deckContainerDeck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}

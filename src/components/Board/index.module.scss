@@ -1,76 +1,109 @@
 .background {
     height: 100vh;
     background-position: center;
+    overflow: hidden;
 }
 
-//GRID LAYOUT
+//Grid layout
 
 .boardContainer {
-    column-gap: 100%;
     padding-top: 10vh;
     padding-left: 10vh;
     height: 80vh;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr 0.35fr 0.65fr;
+}
+
+.itemContainer {
+    justify-self: center;
+    align-self: center;
 }
 
 .specialCard1 {
-    column-gap: 100%;
     grid-row: 1;
-    // border: 2px solid var(--accent-color)
+    @extend .itemContainer
 }
 
 .specialCard2 {
-    column-gap: 100%;
     grid-row: 2;
-    // border: 2px solid var(--accent-color)
+    @extend .itemContainer
 }
 
 
 .cardTop1 {
     grid-row: 1;
     grid-column: 2;
-    // border: 2px solid var(--white-color)
+    @extend .itemContainer
 }
 
 .cardTop2 {
     grid-row: 1;
     grid-column: 3;
-    // border: 2px solid var(--white-color)
+    @extend .itemContainer
 }
 
 .cardBottom1 {
     grid-row: 2;
     grid-column: 2;
-    // border: 2px solid var(--white-color)
+    @extend .itemContainer
 }
 
 .cardBottom2 {
     grid-row: 2;
     grid-column: 3;
-    // border: 2px solid var(--white-color)
+    @extend .itemContainer
 }
 
-//CARDS THAT DISPLAY
+.scoreTop {
+    @extend .itemContainer;
+    padding-top: 20rem; //this could be same value as in .scoreBottom padding-bottom
+}
+
+.scoreBottom {
+    @extend .itemContainer;
+    padding-bottom: 20rem;
+}
+
+//Elements displayed
 
 .card {
-    border: 2px solid var(--white-color);
-    width: 70%;
-    height: 90%;
+    // border: 2px solid var(--white-color);
+    background-color: var(--white-color);
+    opacity: 30%;
+    width: 20rem;
+    height: 23rem;
     margin: auto;
 
 }
 
 .specialCard {
-    border: 2px solid var(--accent-color);
-    width: 70%;
-    height: 90%;
+    // border: 2px solid var(--accent-color);
+    background-color: var(--accent-color);
+    opacity: 30%;
+    width: 20rem;
+    height: 23rem;
     margin: auto;
 }
 
-.button {
-    width: 75px;
+.buttonContainer {
     grid-column: 4;
     grid-row: 1 / span 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.button {
+    border: none;
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    width: 8rem;
+    height: 4rem;
+}
+
+.score {
+    color: white;
+    font-size: 3rem;
+
 }

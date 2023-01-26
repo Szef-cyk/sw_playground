@@ -2,29 +2,36 @@ import { connect, useSelector } from 'react-redux';
 import { selectLastCharacter } from '../../redux/selectors';
 import styles from './index.module.scss'
 
-const Card = () => {
+interface CardProps {
+    name: string;
+    height: string;
+    gender: string;
+    eyecolor: string;
+    margin: string;
+    attack: number;
+    type: string;
+}
+const Card: React.FC<CardProps> = ({ name, height, gender, eyecolor, margin, attack, type }) => {
 
-    const character = useSelector(selectLastCharacter);
-
-    const cardClasses = `${styles.card} ${character?.type === 'Hero' || character?.type === 'Jedi' ? styles.hero : ''} 
-    ${character?.type === 'Villain' || character?.type === 'Bounty Hunter' ? styles.villain : ''}`
+    const cardClasses = `${styles.card} ${type === 'Hero' || type === 'Jedi' ? styles.hero : ''} 
+    ${type === 'Villain' || type === 'Bounty Hunter' ? styles.villain : ''}`
 
     return (
-        <div className={styles.container}>
-            <div className={cardClasses}>
-                <div className={styles.header}>{character?.name}</div>
+        <div className={styles.container} >
+            <div className={cardClasses} style={{ margin: margin }}>
+                <div className={styles.header}>{name}</div>
                 <div className={styles.image}></div>
-                <div className={styles.attack}>{character?.attack}</div>
+                <div className={styles.attack}>{attack}</div>
                 <div className={styles.info}>
-                    <p className={styles.details}>Type: {character?.type}</p>
-                    <p className={styles.details}>Height: {character?.height}</p>
-                    <p className={styles.details}>Gender: {character?.gender}</p>
-                    <p className={styles.details}>Eye Color: {character?.eyecolor}</p>
+                    <p className={styles.details}>Type: {type}</p>
+                    <p className={styles.details}>Height: {height}</p>
+                    <p className={styles.details}>Gender: {gender}</p>
+                    <p className={styles.details}>Eye Color: {eyecolor}</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Card
 
+export default Card

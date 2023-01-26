@@ -95,9 +95,10 @@ const SearchBar: React.FC = () => {
         const character = objPeople[randomNumber]
         const attack = calculateAttack(character.name)
         const type = calculateType(character.name)
+        console.log(character)
         dispatch(AddCharacter({
             id: nextCharacterId(),
-            eyecolor: character.eye_color,
+            eyecolor: character.eyeColor,
             gender: character.gender,
             height: character.height,
             name: character.name,
@@ -138,7 +139,7 @@ const SearchBar: React.FC = () => {
                                 <button onClick={handleSubmit3} className={styles.buttonDispose}>Dispose Card</button>
                             </div>
                             <div className={styles.row2}>
-                                <Card />
+                                <Card {...character} margin={'0'} />
                             </div>
                         </div>
                         : null}

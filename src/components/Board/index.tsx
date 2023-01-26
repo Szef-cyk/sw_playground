@@ -1,5 +1,6 @@
 import React from 'react'
 import boardBackground from '../../assets/boardBackground.jpg'
+import Hand from '../Hand'
 import styles from './index.module.scss'
 const Board = () => {
     return (
@@ -24,8 +25,17 @@ const Board = () => {
                     <div className={styles.cardBottom2}>
                         <div className={styles.card}></div>
                     </div>
-                    <button className={styles.button}>End Turn</button>
+                    <div className={styles.buttonContainer}>
+                        <button className={styles.button}>End Turn</button>
+                    </div>
+                    <div className={styles.scoreTop}>
+                        <div className={styles.score}>0</div>
+                    </div>
+                    <div className={styles.scoreBottom}>
+                        <div className={styles.score}>999</div>
+                    </div>
                 </div>
+                <Hand />
             </div>
         </>
     )

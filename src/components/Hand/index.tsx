@@ -2,9 +2,9 @@ import React from 'react'
 import { selectDeck } from '../../redux/selectors'
 import { useSelector } from 'react-redux'
 import styles from './index.module.scss'
-import Card from '../../components/Card'
+import Card from '../Card'
 
-const Deck = () => {
+const Hand = () => {
     const deck = useSelector(selectDeck)
     console.log(deck)
     const cardsNumber = deck.length
@@ -24,15 +24,19 @@ const Deck = () => {
     const margin = calculateDeckMargin(cardsNumber)
     const containerMargin = calculateContainerMargin(cardsNumber)
     return (
-        <>
-            <div className={styles.heading} >YOUR DECK:</div>
+        <><div className={styles.handContainer}></div>
             <div className={styles.deckContainer} style={{ margin: containerMargin }}>
                 {deck.map((character) => {
-                    return <Card key={character.character.id} {...character.character} margin={margin} />
+                    return (
+                        <div className={styles.hover}>
+                            <Card key={character.character.id} {...character.character} margin={margin}
+                            />
+                        </div>
+                    )
                 })}
             </div>
         </>
     )
 }
 
-export default Deck
+export default Hand
