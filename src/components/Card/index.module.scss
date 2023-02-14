@@ -1,7 +1,7 @@
 @import "../../styles/mixins.scss";
 
 .container {
-    @include containerCard
+    @include containerCard;
 }
 
 .card {
@@ -38,4 +38,72 @@
 
 .attack {
     @include attackCard
+}
+
+//OPPONENTS HAND
+
+.cardBack {
+    position: relative;
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135);
+    background: var(--bg-color);
+    height: var(--cardHeight);
+    width: var(--cardWidth);
+    transition: 0.15s;
+    border-radius: 1%;
+    box-shadow: 2px 2px 50px 6px rgb(220, 220, 220);
+}
+
+.imageBack {
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135);
+    background: var(--white-color);
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 95%;
+    background-color: rgb(212, 212, 212);
+}
+
+//PLAYED CARDS ( ON BOARD )
+
+.playedCardContainer {
+
+    @include playedCardContainer
+}
+
+.playedCard {
+    @include playedCard //PIXELE DO ZMIANY
+}
+
+
+.playedInfo {
+    @include playedInfo
+}
+
+.playedImage {
+    @include playedImage
+}
+
+.playedDetails {
+    @include playedDetails
+}
+
+.playedHero {
+    @include heroCard
+}
+
+.playedVillain {
+    @include playedVillainCard
+}
+
+.playedHero {
+    @include playedHeroCard
+}
+
+.playedAttack {
+    @include playedAttack
+}
+
+.playedHeader {
+    @include playedHeader
 }

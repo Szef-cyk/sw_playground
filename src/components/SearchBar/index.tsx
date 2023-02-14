@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddCharacter, AddToDeck, SwitchFlag } from '../../redux/actions';
 import Card from '../Card';
-import { selectFlag, selectLastCharacter } from '../../redux/selectors';
+import { selectDeck, selectFlag, selectLastCharacter } from '../../redux/selectors';
 import cn from 'classnames';
 import { usePeople } from '../../apollo/hooks/usePeople';
 // import axios from 'axios';
@@ -90,8 +90,6 @@ const SearchBar: React.FC = () => {
             return new Date().getTime().toString()
         }
 
-        console.log(randomNumber)
-
         const character = objPeople[randomNumber]
         const attack = calculateAttack(character.name)
         const type = calculateType(character.name)
@@ -105,7 +103,6 @@ const SearchBar: React.FC = () => {
             attack: attack,
             type: type
         }))
-
         dispatch(SwitchFlag())
     };
 

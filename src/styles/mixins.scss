@@ -3,68 +3,69 @@
 @mixin containerCard {
     display: flex;
     justify-content: center;
-
+    height: var(--cardHeight);
+    width: var(--cardWidth);
 }
 
 @mixin cardCard {
-    position: relative;
-    border: 5px solid rgb(135, 135, 135);
+    // position: relative;
+    border: calc(0.008 * var(--cardHeight)) solid rgb(135, 135, 135);
     background: silver;
-    height: 40rem;
-    width: 27rem;
+    height: 100%;
+    width: 100%;
     transition: 0.15s;
     border-radius: 1%;
     box-shadow: 2px 2px 50px 6px rgb(220, 220, 220);
+    z-index: 0;
 }
 
 @mixin heroCard {
-    border: 5px solid var(--accent-color);
+    border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
     background: var(--jedi-color);
 
     .header {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
         background-color: var(--bg-color);
         color: var(--accent-color);
     }
 
     .image {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
         background: var(--white-color);
     }
 
     .info {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
     }
 
     .attack {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
         background-color: var(--bg-color);
         color: var(--accent-color);
     }
 }
 
 @mixin villainCard {
-    border: 5px solid var(--accent-color);
-
+    border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
     background: var(--sith-color);
 
     .header {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
         background-color: var(--sith-bg-color);
         color: var(--accent-color);
     }
 
     .image {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
         background: var(--white-color);
     }
 
     .info {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
     }
 
     .attack {
-        border: 5px solid var(--accent-color);
+        border: calc(0.008 * var(--cardHeight)) solid var(--accent-color);
         background-color: var(--sith-bg-color);
         color: var(--accent-color);
     }
@@ -75,16 +76,15 @@
         transform: scale(1.04);
         z-index: 2
     }
-
-    ;
 }
 
 @mixin headerCard {
-    border: 5px solid rgb(135, 135, 135);
+    border: calc(0.008 * var(--cardHeight)) solid rgb(135, 135, 135);
     background-color: rgb(160, 160, 160);
     transform: translate(0, -0.72rem);
     color: var(--white-color);
-    font-size: 2rem;
+    font-size: calc(0.06 * var(--cardHeight)); //2 rem originaly
+    height: 8%;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -92,7 +92,7 @@
 }
 
 @mixin imageCard {
-    border: 5px solid rgb(135, 135, 135);
+    border: calc(0.008 * var(--cardHeight)) solid rgb(135, 135, 135);
     background: var(--white-color);
     margin-top: 2%;
     margin-left: auto;
@@ -102,12 +102,12 @@
 }
 
 @mixin infoCard {
-    border: 5px solid rgb(135, 135, 135);
+    border: calc(0.008 * var(--cardHeight)) solid rgb(135, 135, 135);
     background: var(--white-color);
     margin-top: -14%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 1.5rem;
+    padding-top: calc(0.0225 * var(--cardHeight));
     width: 90%;
     height: 23%;
 }
@@ -115,12 +115,12 @@
 @mixin detailsCard {
     padding-left: 3.5%;
     padding-bottom: 2.5%;
-    font-size: 1.2rem;
+    font-size: calc(0.037 * var(--cardHeight));
     margin: 0;
 }
 
 @mixin attackCard {
-    border: 5px solid rgb(135, 135, 135);
+    border: calc(0.008 * var(--cardHeight)) solid rgb(135, 135, 135);
     background-color: rgb(160, 160, 160);
     color: var(--white-color);
     display: flex;
@@ -128,10 +128,10 @@
     align-items: center;
     position: relative;
     border-radius: 50%;
-    width: 6rem;
-    height: 6rem;
-    bottom: 2rem;
-    font-size: 2rem;
+    width: calc(0.145 * var(--cardHeight));
+    height: calc(0.145 * var(--cardHeight));
+    bottom: calc(0.06 * var(--cardHeight));
+    font-size: calc(0.06 * var(--cardHeight));
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -157,4 +157,139 @@
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+}
+
+@mixin offSetValue {
+    top: -28%;
+}
+
+// PLAYED CARDS
+
+@mixin playedCardContainer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+@mixin playedCard {
+    position: relative;
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135); //PIXELE DO ZMIANY
+    background: silver;
+    height: 100%;
+    width: 100%;
+    transition: 0.15s;
+    border-radius: 1%;
+    box-shadow: 2px 2px 50px 6px rgb(220, 220, 220); //PIXELE DO ZMIANY
+}
+
+@mixin playedAttack {
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135);
+    background-color: rgb(160, 160, 160);
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+    width: calc(0.145 * var(--playedCardHeight));
+    height: calc(0.145 * var(--playedCardHeight));
+    bottom: calc(0.06 * var(--playedCardHeight));
+    font-size: calc(0.06 * var(--playedCardHeight));
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+@mixin playedInfo {
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135);
+    background: var(--white-color);
+    margin-top: -14%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: calc(0.0225 * var(--playedCardHeight));
+    width: 90%;
+    height: 23%;
+}
+
+@mixin playedHeader {
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135);
+    background-color: rgb(160, 160, 160);
+    transform: translate(0, -0.72rem);
+    color: var(--white-color);
+    font-size: calc(0.06 * var(--playedCardHeight));
+    height: 8%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+@mixin playedImage {
+    border: calc(0.008 * var(--playedCardHeight)) solid rgb(135, 135, 135);
+    background: var(--white-color);
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 50%;
+}
+
+@mixin playedDetails {
+    padding-left: 3.5%;
+    padding-bottom: 2.5%;
+    font-size: calc(0.037 * var(--playedCardHeight)); //1.2rem
+    margin: 0;
+}
+
+@mixin playedVillainCard {
+    border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+    background: var(--sith-color);
+
+    .playedHeader {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+        background-color: var(--sith-bg-color);
+        color: var(--accent-color);
+    }
+
+    .playedImage {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+        background: var(--white-color);
+    }
+
+    .playedInfo {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+    }
+
+    .playedAttack {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+        background-color: var(--sith-bg-color);
+        color: var(--accent-color);
+    }
+}
+
+@mixin playedHeroCard {
+    border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+    background: var(--jedi-color);
+
+    .playedHeader {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+        background-color: var(--bg-color);
+        color: var(--accent-color);
+    }
+
+    .playedImage {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+        background: var(--white-color);
+    }
+
+    .playedInfo {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+    }
+
+    .playedAttack {
+        border: calc(0.008 * var(--playedCardHeight)) solid var(--accent-color);
+        background-color: var(--bg-color);
+        color: var(--accent-color);
+    }
 }

@@ -1,7 +1,3 @@
-export enum Gender {
-    MALE = 'male',
-    FEMALE = 'female'
-}
 
 export interface Person {
     name: string,
@@ -32,10 +28,27 @@ export interface Character {
     type: string
 }
 
-export interface Deck {
-    character: Character
-}
+export interface Ship extends Omit<Character, 'gender' | 'eyecolor'> {
+    depth: number;
+};
+
+export type PlayedCards = Character | Ship;
+
+/// reducer playedCards: Card[]
+
+/// deck -> { character: Character[] }
+
+/// deck -> Character[]
 
 export interface Flag {
     isVisible: boolean
 }
+export interface Turn {
+    turn: boolean
+}
+
+export interface Attack {
+    playerOne: number,
+    playerTwo: number
+}
+

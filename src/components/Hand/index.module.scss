@@ -1,23 +1,12 @@
 @import "../../styles/mixins.scss";
 
-.handContainer {
-    // position: relative;
-    // overflow: hidden;
-    // top: 5000px;
-}
-
-// .container {
-//     @include containerDeck
-// }
-
 .deckContainer {
     @include deckContainerDeck;
-    // position: absolute;
-    // overflow: hidden;
-
-    // top: 50%
+    position: relative;
+    bottom: 20vh;
 }
 
 .hover:hover {
-    transform: translate(0, -80%);
+    transform: translate(0, -58%);
+    z-index: 1;
 }

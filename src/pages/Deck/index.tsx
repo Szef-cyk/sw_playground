@@ -3,32 +3,20 @@ import { selectDeck } from '../../redux/selectors'
 import { useSelector } from 'react-redux'
 import styles from './index.module.scss'
 import Card from '../../components/Card'
+import calculateDeckMargin from '../../utils/calculateDeckMargin'
+import calculateContainerMargin from '../../utils/calculateContainerMargin'
 
 const Deck = () => {
     const deck = useSelector(selectDeck)
-    console.log(deck)
-    const cardsNumber = deck.length
-    const calculateDeckMargin = (cardsNumber: number): string => {
-        if (cardsNumber > 6) {
-            return `0 -24rem 0 0`
-        }
-        return `0 ${cardsNumber * -4}rem 0 0`
-    }
-    const calculateContainerMargin = (cardsNumber: number): string => {
-        if (cardsNumber > 6) {
-            return `0 24rem 0 0`
-        }
-        return `0 ${cardsNumber * 4}rem 0 0`
-    }
-
-    const margin = calculateDeckMargin(cardsNumber)
-    const containerMargin = calculateContainerMargin(cardsNumber)
+    const margin = calculateDeckMargin(deck.length)
+    // const margin = ' 0 -50px 0 0'
+    const containerMargin = calculateContainerMargin(deck.length)
     return (
         <>
-            <div className={styles.heading} >YOUR DECK:</div>
+            <div className={styles.heading}>YOUR DECK:</div>
             <div className={styles.deckContainer} style={{ margin: containerMargin }}>
                 {deck.map((character) => {
-                    return <Card key={character.character.id} {...character.character} margin={margin} />
+                    return <Card key={character.id} {...character} margin={margin} />
                 })}
             </div>
         </>

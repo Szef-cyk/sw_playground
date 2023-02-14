@@ -4,10 +4,11 @@
     @include headingDeck
 }
 
-.container {
-    // @include containerDeck
-}
+// .container {
+//     @include containerDeck
+// }
 
 .deckContainer {
-    @include deckContainerDeck
+    @include deckContainerDeck;
+    z-index: 1
 }

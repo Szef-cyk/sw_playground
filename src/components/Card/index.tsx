@@ -17,8 +17,8 @@ const Card: React.FC<CardProps> = ({ name, height, gender, eyecolor, margin, att
     ${type === 'Villain' || type === 'Bounty Hunter' ? styles.villain : ''}`
 
     return (
-        <div className={styles.container} >
-            <div className={cardClasses} style={{ margin: margin }}>
+        <div className={styles.container} style={{ margin: margin }}>
+            <div className={cardClasses} >
                 <div className={styles.header}>{name}</div>
                 <div className={styles.image}></div>
                 <div className={styles.attack}>{attack}</div>

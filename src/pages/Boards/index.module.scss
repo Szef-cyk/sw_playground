@@ -1,15 +1,24 @@
+@import "../../styles/mixins.scss";
+
 .background {
     height: 100vh;
     background-position: center;
     overflow: hidden;
+    position: absolute;
+    height: 130vh;
+    width: 100vw;
 }
 
 //Grid layout
 
 .boardContainer {
+    position: absolute;
+    // @include offSetValue;
+    top: 13rem;
     padding-top: 10vh;
     padding-left: 10vh;
     height: 80vh;
+    width: 90vw;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1.2fr 1fr 1fr 0.35fr 0.65fr;
@@ -70,9 +79,9 @@
 .card {
     // border: 2px solid var(--white-color);
     background-color: var(--white-color);
-    opacity: 30%;
-    width: 20rem;
-    height: 23rem;
+    // opacity: 30%;
+    height: var(--playedCardHeight);
+    width: var(--playedCardWidth);
     margin: auto;
 
 }
@@ -81,8 +90,8 @@
     // border: 2px solid var(--accent-color);
     background-color: var(--accent-color);
     opacity: 30%;
-    width: 20rem;
-    height: 23rem;
+    height: 25rem;
+    width: 16.875rem;
     margin: auto;
 }
 
@@ -94,7 +103,7 @@
 }
 
 .button {
-    border: none;
+    // border: none;
     background-color: var(--bg-color);
     color: var(--accent-color);
     font-size: 1.3rem;
@@ -105,5 +114,12 @@
 .score {
     color: white;
     font-size: 3rem;
+}
 
+.handContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    bottom: -40%;
 }

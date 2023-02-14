@@ -14,12 +14,27 @@
   --blue-lightsaber: rgba(63, 116, 238, 0.625);
   --green-lightsaber: rgba(82, 210, 53, 0.625);
   --red-lightsaber: rgba(217, 53, 53, 0.625);
+  --cardHeight: 40rem; //67.5 % ratio
+  --cardWidth: 27rem;
+  --playedCardHeight: 25rem; //67.5 % ratio
+  --playedCardWidth: 16.875rem;
 }
+
+// body,
+// html {
+//   background: black;
+// }
 
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
-  background: var(--white-color);
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 input::-webkit-outer-spin-button,

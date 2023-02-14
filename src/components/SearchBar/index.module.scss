@@ -111,12 +111,11 @@
     }
 }
 
-
-
 .flexContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     width: 40rem;
 }
 
@@ -134,4 +133,8 @@
     margin: auto;
     text-transform: uppercase;
     font-size: 1.1rem;
+}
+
+.row2 {
+    margin: auto;
 }
