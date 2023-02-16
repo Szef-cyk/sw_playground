@@ -42,8 +42,26 @@ const PlayerTwoHand = () => {
         height: 'Very tiny, actually',
         gender: 'Robot-male',
         eyecolor: 'Hard to tell',
-        attack: 24,
+        attack: 7,
         type: 'Hero'
+    },
+    {
+        id: '5',
+        name: 'Arnold Szwarceneger',
+        height: 'Big Biceps',
+        gender: 'Terminator',
+        eyecolor: 'German',
+        attack: 10,
+        type: 'Hero'
+    },
+    {
+        id: '6',
+        name: 'Donald Trump',
+        height: 'Dunno, but big hands',
+        gender: 'Sigma Male',
+        eyecolor: 'Orange',
+        attack: 1,
+        type: 'Villain'
     }
     ]
 
@@ -53,7 +71,7 @@ const PlayerTwoHand = () => {
     const played = useSelector(selectPlayedCardsTwo)
     const dispatch = useDispatch();
     const firstUpdate = useRef(true);
-    const [usedNumbers, setUsedNumbers] = useState([0])
+    const [usedNumbers, setUsedNumbers] = useState([])
 
     useLayoutEffect(() => {
         if (hand.length === 0) {
@@ -77,23 +95,38 @@ const PlayerTwoHand = () => {
             const index = hand.indexOf(choosenOne)
             setHand((prevHand: Character[]) => prevHand.filter((card, i) => i !== index))
         }
-        let randomNumber = 0
-        function getRandomNumber() {
-            if (usedNumbers.length === 4) {
-                console.log('You generated all the numbers')
+        function* generateRandomNumbersWithoutRepetition(max: number): Generator<number> {
+            const values = Array.from({ length: max }, (_, i) => i + 1);
+            let index = max;
+
+            while (index > 0) {
+                const randomIndex = Math.floor(Math.random() * index);
+                index--;
+
+                yield values[randomIndex];
+                values[randomIndex] = values[index];
+                console.log(values)
             }
-            randomNumber = Math.floor(Math.random() * 4) + 1;
-            if (!usedNumbers.includes(randomNumber)) {
-                setUsedNumbers(prevUsedNumbers => [...prevUsedNumbers, randomNumber])
-                console.log(randomNumber)
-                console.log(usedNumbers)
-                return randomNumber
-            } else {
-                getRandomNumber()
-            }
-            return randomNumber
         }
-        let generatedNumber = getRandomNumber().toString()
+
+        let randomNumber = generateRandomNumbersWithoutRepetition(6)
+        // function getRandomNumber() {
+        //     if (usedNumbers.length === 4) {
+        //         console.log('You generated all the numbers')
+        //     }
+        //     randomNumber = Math.floor(Math.random() * 6) + 1;
+        //     if (!usedNumbers.includes(randomNumber)) {
+        //         setUsedNumbers(prevUsedNumbers => [...prevUsedNumbers, randomNumber])
+        //         console.log(randomNumber)
+        //         console.log(usedNumbers)
+        //         return randomNumber
+        //     } else {
+        //         getRandomNumber()
+        //     }
+        //     return randomNumber
+        // }
+        let generatedNumber = randomNumber.next().value.toString()
+        console.log(generatedNumber)
         chooseCard(generatedNumber)
     }, [turn]);
 

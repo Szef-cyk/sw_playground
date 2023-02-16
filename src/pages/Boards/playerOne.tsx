@@ -1,35 +1,42 @@
 import React, { useRef, useState } from 'react'
 import boardBackground from '../../assets/boardBackground.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAttack, selectPlayedCards, selectPlayedCardsTwo } from '../../redux/selectors'
+import { selectAttack, selectHearts, selectPlayedCards, selectPlayedCardsTwo } from '../../redux/selectors'
 import PlayerOneHand from '../../components/Hand/playerOneHand'
 import styles from './index.module.scss'
-import Card from '../../components/Card'
-import { Reset, Played, SwitchTurn } from '../../redux/actions'
+import { Reset, Played, SwitchTurn, TwoLost, OneLost } from '../../redux/actions'
 import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
+
 const BoardOne = () => {
     const playedCards = useSelector(selectPlayedCards)
     const playedCardsTwo = useSelector(selectPlayedCardsTwo)
+    const Hearts = useSelector(selectHearts)
+    const playerOneHearts = Hearts.playerOne
+    const playerTwoHearts = Hearts.playerTwo
     const dispatch = useDispatch()
     const attack = useSelector(selectAttack)
     const [playPoints, setPlayPoints] = useState(1.5)
     const [numberPlayedCards, setNumberPlayedCards] = useState(0)
-    const playerOne = attack.playerOne
-    const playerTwo = attack.playerTwo
+    const playerOneAttack = attack.playerOne
+    const playerTwoAttack = attack.playerTwo
+
     const handleButton = () => {
         if (numberPlayedCards >= 2) {
             setNumberPlayedCards(0)
             dispatch(Reset())
             dispatch(SwitchTurn())
-            console.log("first conditioin")
+            if (playerOneAttack > playerTwoAttack) {
+                dispatch(TwoLost())
+            } else {
+                dispatch(OneLost())
+            }
         }
         else {
             dispatch(SwitchTurn())
             setNumberPlayedCards(numberPlayedCards + 1)
             setPlayPoints(1.5)
-            console.log('second condition')
         }
     }
 
@@ -72,11 +79,18 @@ const BoardOne = () => {
                         <button className={styles.button} onClick={handleButton}>End Turn</button>
                     </div>
                     <div className={styles.scoreTop}>
-                        <div className={styles.score}>{playerTwo}</div>
+                        {Array.from(Array(playerTwoHearts).keys()).map(() => {
+                            return <img src={heart} alt='heart' width="40" height="40" />
+                        })
+                        }
+                        <div className={styles.score}>{playerTwoAttack}</div>
                     </div>
                     <div className={styles.scoreBottom}>
-                        <div className={styles.score}>{playerOne}</div>
-                        <img src={heart} alt='heart' width="40" height="40" />
+                        <div className={styles.score}>{playerOneAttack}</div>
+                        {Array.from(Array(playerOneHearts).keys()).map(() => {
+                            return <img src={heart} alt='heart' width="40" height="40" />
+                        })
+                        }
                     </div>
                 </div>
                 <div className={styles.handContainer}>

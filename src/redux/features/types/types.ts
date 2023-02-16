@@ -52,3 +52,7 @@ export interface Attack {
     playerTwo: number
 }
 
+export interface Hearts {
+    playerOne: number,
+    playerTwo: number
+}

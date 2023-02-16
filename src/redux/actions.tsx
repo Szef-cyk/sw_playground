@@ -18,4 +18,8 @@ export const Attack = (attack: number) => ({ type: 'playerOneAttack', payload: a
 
 export const AttackTwo = (attack: number) => ({ type: 'playerTwoAttack', payload: attack })
 
+export const OneLost = () => ({ type: 'oneLost' })
+
+export const TwoLost = () => ({ type: 'twoLost' })
+
 export const SwitchTurn = () => ({ type: 'turnSwitch' })

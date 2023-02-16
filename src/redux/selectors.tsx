@@ -17,3 +17,6 @@ export const selectPlayedCardsTwo = (state: RootState) => state.playedCardsTwo
 export const selectAttack = (state: RootState) => state.attack
 
 export const selectTurn = (state: RootState) => state.turn
+
+export const selectHearts = (state: RootState) => state.hearts
+
