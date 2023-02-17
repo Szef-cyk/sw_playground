@@ -1,28 +1,18 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import BoardOne from '../Boards/playerOne'
-import Hand from '../../components/Hand/playerOneHand'
-import { AddToHand } from '../../redux/actions'
-import { selectDeck, selectHand } from '../../redux/selectors'
+import { SelectPlayerOne, SelectPlayerTwo } from '../../redux/actions';
 import styles from "./index.module.scss";
 
 const Play = () => {
-    // const deck = useSelector(selectDeck)
-    // const hand = deck
-    // const isHand = useSelector(selectHand)
-    // const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(AddToHand(hand))
-    //     return
-    // }, [])
+    const dispatch = useDispatch()
 
     return (
         <>
             <div>
                 <h1>Choose Side</h1>
-                <Link to='/playerOne' className={styles.text}>Player One</Link>
-                <Link to='/playerTwo' className={styles.text}>Player Two</Link>
+                <Link to='/board' className={styles.text} onClick={() => dispatch(SelectPlayerOne())}>Player One</Link>
+                <Link to='/board' className={styles.text} onClick={() => dispatch(SelectPlayerTwo())}>Player Two</Link>
             </div>
         </>
     )

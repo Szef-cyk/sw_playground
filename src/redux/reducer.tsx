@@ -4,11 +4,12 @@ import deckSlice from "./features/deck/deckSlice";
 import flagSlice from "./features/flag/flagSlice";
 import playedSlice from './features/playSection/playedSlice'
 import handSlice from './features/playSection/handSlice'
-import { Attack, Character, Flag, Hearts, PlayedCards, Turn } from "./features/types/types";
+import { Attack, Character, Flag, Game, Hearts, PlayedCards, Turn } from "./features/types/types";
 import attackSlice from "./features/playSection/attackSlice";
 import turnSlice from "./features/flag/turnSlice";
 import playedSliceTwo from "./features/playSection/playedSliceTwo";
 import heartsSlice from "./features/playSection/heartsSlice";
+import gameSlice from "./features/playSection/gameSlice";
 
 const rootReducer = combineReducers<CombinedState<{
     characters: Character[]
@@ -20,6 +21,7 @@ const rootReducer = combineReducers<CombinedState<{
     attack: Attack
     turn: Turn
     hearts: Hearts
+    game: Game
 }>>({
     characters: charactersSlice,
     deck: deckSlice,
@@ -29,7 +31,8 @@ const rootReducer = combineReducers<CombinedState<{
     hand: handSlice,
     attack: attackSlice,
     turn: turnSlice,
-    hearts: heartsSlice
+    hearts: heartsSlice,
+    game: gameSlice
 })
 
 export default rootReducer 

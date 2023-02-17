@@ -20,3 +20,8 @@ export const selectTurn = (state: RootState) => state.turn.turn
 
 export const selectHearts = (state: RootState) => state.hearts
 
+export const selectPlayerOne = (state: RootState) => state.game.player.one
+
+export const selectPlayerTwo = (state: RootState) => state.game.player.two
+
+

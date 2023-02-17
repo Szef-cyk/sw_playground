@@ -11,9 +11,9 @@ import { Character } from '../../redux/features/types/types'
 
 
 
-const PlayerOneHand: React.FC<{ playPoints: number, setPlayPoints: React.Dispatch<React.SetStateAction<number>> }> = ({ playPoints, setPlayPoints }) => {
-    const deck = useSelector(selectDeck)
-    const [hand, setHand] = useState(deck.slice())
+const PlayerOneHand: React.FC<{ playPoints: number, deck: Character[], setPlayPoints: React.Dispatch<React.SetStateAction<number>> }> = ({ playPoints, setPlayPoints, deck }) => {
+    // const deck = deck
+    const [hand, setHand] = useState(deck)
     const played = useSelector(selectPlayedCards)
     const dispatch = useDispatch();
     const chooseCard = (id: string) => {

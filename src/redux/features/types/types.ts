@@ -56,3 +56,14 @@ export interface Hearts {
     playerOne: number,
     playerTwo: number
 }
+
+export interface Game {
+    player: {
+        one?: boolean,
+        two?: boolean
+    }
+    turn: {
+        one?: boolean,
+        two?: boolean
+    }
+}

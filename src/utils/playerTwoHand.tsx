@@ -76,6 +76,7 @@ const PlayerTwoHand = () => {
     const [selectedCard, setSelectedCard] = useState<Character>();
 
     useEffect(() => {
+        return () => { }
         if (selectedCard || !hand.length) return;
         console.log(hand)
         const randomCard = hand[Math.floor(Math.random() * hand.length)];
@@ -90,54 +91,53 @@ const PlayerTwoHand = () => {
         setSelectedCard(undefined);
     }, [turn])
 
-    console.log(hand);
-    console.log(selectedCard);
+    // console.log(hand);
+    // console.log(selectedCard);
 
+    // useLayoutEffect(() => {
+    //     return () => { };
+    //     if (hand.length === 0) {
+    //         return;
+    //     }
+    //     if (firstUpdate.current) {
+    //         firstUpdate.current = false;
+    //         return;
+    //     }
+    //     const chooseCard = (id: string) => {
+    //         if (played.length === 2) {
+    //             return alert('You played all the cards. End Turn.')
+    //         }
+    //         const choosenOne = hand.find((character) => character.id === id)
+    //         if (choosenOne === undefined) {
+    //             throw new TypeError('No such card my friend.')
+    //         }
+    //         dispatch(PlayedTwo(choosenOne))
+    //         const attack = choosenOne.attack
+    //         dispatch(AttackTwo(attack))
+    //         const index = hand.indexOf(choosenOne)
+    //         setHand((prevHand: Character[]) => prevHand.filter((card, i) => i !== index))
+    //     }
+    //     function* generateRandomNumbersWithoutRepetition(max: number): Generator<number> {
+    //         const values = Array.from({ length: max }, (_, i) => i + 1);
+    //         // setValues((prevValues) => [...prevValues, values])
+    //         let index = max;
 
-    useLayoutEffect(() => {
-        return () => { };
-        if (hand.length === 0) {
-            return;
-        }
-        if (firstUpdate.current) {
-            firstUpdate.current = false;
-            return;
-        }
-        const chooseCard = (id: string) => {
-            if (played.length === 2) {
-                return alert('You played all the cards. End Turn.')
-            }
-            const choosenOne = hand.find((character) => character.id === id)
-            if (choosenOne === undefined) {
-                throw new TypeError('No such card my friend.')
-            }
-            dispatch(PlayedTwo(choosenOne))
-            const attack = choosenOne.attack
-            dispatch(AttackTwo(attack))
-            const index = hand.indexOf(choosenOne)
-            setHand((prevHand: Character[]) => prevHand.filter((card, i) => i !== index))
-        }
-        function* generateRandomNumbersWithoutRepetition(max: number): Generator<number> {
-            const values = Array.from({ length: max }, (_, i) => i + 1);
-            // setValues((prevValues) => [...prevValues, values])
-            let index = max;
+    //         while (index > 0) {
+    //             const randomIndex = Math.floor(Math.random() * index);
+    //             index--;
 
-            while (index > 0) {
-                const randomIndex = Math.floor(Math.random() * index);
-                index--;
+    //             yield values[randomIndex];
+    //             values[randomIndex] = values[index];
+    //             console.log(values)
+    //         }
+    //     }
 
-                yield values[randomIndex];
-                values[randomIndex] = values[index];
-                console.log(values)
-            }
-        }
+    //     let randomNumber = generateRandomNumbersWithoutRepetition(6)
 
-        let randomNumber = generateRandomNumbersWithoutRepetition(6)
-
-        let generatedNumber = randomNumber.next().value.toString()
-        console.log(generatedNumber)
-        chooseCard(generatedNumber)
-    }, [turn]);
+    //     let generatedNumber = randomNumber.next().value.toString()
+    //     console.log(generatedNumber)
+    //     chooseCard(generatedNumber)
+    // }, [turn]);
 
     const margin = calculateDeckMargin(hand.length)
     const containerMargin = calculateContainerMargin(hand.length)

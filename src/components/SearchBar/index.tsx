@@ -89,7 +89,7 @@ const SearchBar: React.FC = () => {
         const nextCharacterId = (): string => {
             return new Date().getTime().toString()
         }
-
+        console.log(randomNumber, 'this is important because it casuses crashes')
         const character = objPeople[randomNumber]
         const attack = calculateAttack(character.name)
         const type = calculateType(character.name)

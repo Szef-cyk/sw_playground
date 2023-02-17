@@ -1,26 +1,58 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import boardBackground from '../../assets/boardBackground.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAttack, selectHearts, selectPlayedCards, selectPlayedCardsTwo } from '../../redux/selectors'
+import { selectAttack, selectDeck, selectHearts, selectPlayedCards, selectPlayedCardsTwo, selectPlayerOne, selectTurn } from '../../redux/selectors'
 import PlayerOneHand from '../../components/Hand/playerOneHand'
 import styles from './index.module.scss'
 import { Reset, Played, SwitchTurn, TwoLost, OneLost } from '../../redux/actions'
 import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
+import { Character } from '../../redux/features/types/types'
 
-const BoardOne = () => {
+// const state = {player: {one: true, two: true}, ture: {one: true, two: false}};
+// const deck = {playerOne: [], playerTwo: []};
+
+/// 
+// component
+///
+
+// based on state
+// const who = 'one';
+
+// return <div>
+//     <span>{state.player[who] && deck[who].map(card => card)}</span>
+// </div>
+
+const Board = () => {
+    const dispatch = useDispatch()
+    const playerOne = useSelector(selectPlayerOne)
     const playedCards = useSelector(selectPlayedCards)
     const playedCardsTwo = useSelector(selectPlayedCardsTwo)
     const Hearts = useSelector(selectHearts)
+    const attack = useSelector(selectAttack)
     const playerOneHearts = Hearts.playerOne
     const playerTwoHearts = Hearts.playerTwo
-    const dispatch = useDispatch()
-    const attack = useSelector(selectAttack)
-    const [playPoints, setPlayPoints] = useState(1.5)
-    const [numberPlayedCards, setNumberPlayedCards] = useState(0)
     const playerOneAttack = attack.playerOne
     const playerTwoAttack = attack.playerTwo
+    const [playPoints, setPlayPoints] = useState(1.5)
+    const [numberPlayedCards, setNumberPlayedCards] = useState(0)
+    const playerOneDeck = useSelector(selectDeck)
+    const [deck, setDeck] = useState<Character[]>([])
+    //to be written selectPlayerTwoDeck
+
+    useEffect(() => {
+        if (playerOne) {
+            setDeck(playerOneDeck)
+            console.log('playerOneDeck?', playerOneDeck)
+
+        } else {
+            console.log('player two deck')
+            // console.log(isDeckSet)
+        }
+    }, [])
+
+    console.log('deck', deck)
 
     const handleButton = () => {
         if (numberPlayedCards >= 2) {
@@ -41,7 +73,7 @@ const BoardOne = () => {
     }
 
     return (
-        <>
+        <> {deck.length > 0 ?
             <div className={styles.background} style={{ backgroundImage: `url(${boardBackground})` }}>
                 <PlayerTwoHand />
                 <div className={styles.boardContainer}>
@@ -94,12 +126,13 @@ const BoardOne = () => {
                     </div>
                 </div>
                 <div className={styles.handContainer}>
-                    <PlayerOneHand playPoints={playPoints} setPlayPoints={setPlayPoints} />
+                    <PlayerOneHand playPoints={playPoints} setPlayPoints={setPlayPoints} deck={deck} />
                 </div>
-            </div>
+            </div> : null
+        }
         </>
     )
 }
 
 
-export default BoardOne
+export default Board
