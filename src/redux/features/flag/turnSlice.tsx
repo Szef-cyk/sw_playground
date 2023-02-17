@@ -2,7 +2,7 @@ import { AnyAction } from "@reduxjs/toolkit"
 import { Flag, Turn } from "../types/types";
 
 const initialState: Turn = {
-    turn: false
+    turn: undefined
 }
 
 export default function turnSlice(state: Turn = initialState, action: AnyAction): Turn {

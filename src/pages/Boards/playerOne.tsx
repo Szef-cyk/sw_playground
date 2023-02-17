@@ -79,7 +79,7 @@ const BoardOne = () => {
                         <button className={styles.button} onClick={handleButton}>End Turn</button>
                     </div>
                     <div className={styles.scoreTop}>
-                        {Array.from(Array(playerTwoHearts).keys()).map(() => {
+                        {Array.from(Array(playerTwoHearts || 0).keys()).map(() => {
                             return <img src={heart} alt='heart' width="40" height="40" />
                         })
                         }
@@ -87,7 +87,7 @@ const BoardOne = () => {
                     </div>
                     <div className={styles.scoreBottom}>
                         <div className={styles.score}>{playerOneAttack}</div>
-                        {Array.from(Array(playerOneHearts).keys()).map(() => {
+                        {Array.from(Array(playerOneHearts || 0).keys()).map(() => {
                             return <img src={heart} alt='heart' width="40" height="40" />
                         })
                         }

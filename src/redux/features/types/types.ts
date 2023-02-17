@@ -44,7 +44,7 @@ export interface Flag {
     isVisible: boolean
 }
 export interface Turn {
-    turn: boolean
+    turn?: boolean
 }
 
 export interface Attack {

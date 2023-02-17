@@ -67,13 +67,35 @@ const PlayerTwoHand = () => {
 
 
     const turn = useSelector(selectTurn)
-    const [hand, setHand] = useState(deck.slice())
+    const [hand, setHand] = useState(deck)
     const played = useSelector(selectPlayedCardsTwo)
     const dispatch = useDispatch();
     const firstUpdate = useRef(true);
-    const [usedNumbers, setUsedNumbers] = useState([])
+    const [values, setValues] = useState<number[]>([])
+    // const randomNumberRef = useRef(generateRandomNumbersWithoutRepetition(6))
+    const [selectedCard, setSelectedCard] = useState<Character>();
+
+    useEffect(() => {
+        if (selectedCard || !hand.length) return;
+        console.log(hand)
+        const randomCard = hand[Math.floor(Math.random() * hand.length)];
+        setHand(hand.filter(card => card.id !== randomCard?.id));
+        setSelectedCard(randomCard);
+    }, [hand, selectedCard]);
+
+    useEffect(() => {
+        if (turn === undefined) return;
+
+        if (!turn) return; // isPlayerOne: true , isPlayerTwo: false
+        setSelectedCard(undefined);
+    }, [turn])
+
+    console.log(hand);
+    console.log(selectedCard);
+
 
     useLayoutEffect(() => {
+        return () => { };
         if (hand.length === 0) {
             return;
         }
@@ -97,6 +119,7 @@ const PlayerTwoHand = () => {
         }
         function* generateRandomNumbersWithoutRepetition(max: number): Generator<number> {
             const values = Array.from({ length: max }, (_, i) => i + 1);
+            // setValues((prevValues) => [...prevValues, values])
             let index = max;
 
             while (index > 0) {
@@ -110,21 +133,7 @@ const PlayerTwoHand = () => {
         }
 
         let randomNumber = generateRandomNumbersWithoutRepetition(6)
-        // function getRandomNumber() {
-        //     if (usedNumbers.length === 4) {
-        //         console.log('You generated all the numbers')
-        //     }
-        //     randomNumber = Math.floor(Math.random() * 6) + 1;
-        //     if (!usedNumbers.includes(randomNumber)) {
-        //         setUsedNumbers(prevUsedNumbers => [...prevUsedNumbers, randomNumber])
-        //         console.log(randomNumber)
-        //         console.log(usedNumbers)
-        //         return randomNumber
-        //     } else {
-        //         getRandomNumber()
-        //     }
-        //     return randomNumber
-        // }
+
         let generatedNumber = randomNumber.next().value.toString()
         console.log(generatedNumber)
         chooseCard(generatedNumber)
