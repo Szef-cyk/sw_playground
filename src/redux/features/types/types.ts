@@ -67,3 +67,13 @@ export interface Game {
         two?: boolean
     }
 }
+
+export interface Deck {
+    one: Character[],
+    two: Character[]
+}
+
+export enum Player {
+    ONE = 'one',
+    TWO = 'two'
+}

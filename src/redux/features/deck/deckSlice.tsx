@@ -1,14 +1,21 @@
 import { AnyAction } from "@reduxjs/toolkit"
-import { Character } from "../types/types";
+import { Actions, ActionType } from "../../actions";
+import { Deck } from "../types/types";
 
-export default function deckSlice(state: Character[] = [], action: AnyAction): Character[] {
+export default function deckSlice(state: Deck = {
+    one: [],
+    two: []
+}, action: Actions): Deck {
     switch (action.type) {
-        case "toDeck": {
-            console.log('work in progress')
-            return [
-                ...state,
-                action.payload
-            ]
+        case ActionType.TO_DECK: {
+            return Object.assign({}, state, {
+                [action.payload.player]: [...(state[action.payload.player]), action.payload.character]
+            });
+        }
+        case ActionType.TO_DECK_MANY: {
+            return Object.assign({}, state, {
+                [action.payload.player]: [...(state[action.payload.player]), action.payload.characters]
+            });
         }
         default:
             return state;

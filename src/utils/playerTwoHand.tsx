@@ -1,72 +1,18 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectDeck, selectHand, selectPlayedCards, selectPlayedCardsTwo, selectTurn } from '../redux/selectors'
+import { selectDeckTwo, selectPlayedCardsTwo, selectTurn } from '../redux/selectors'
 import styles from './index.module.scss'
 import calculateDeckMargin from './calculateDeckMargin'
 import calculateContainerMargin from './calculateContainerMargin'
-import { Attack, AttackTwo, Played, PlayedTwo } from '../redux/actions'
+import { } from '../redux/actions'
 import { Character } from '../redux/features/types/types'
 import CardBack from '../components/Card/cardBack'
 
 const PlayerTwoHand = () => {
-    const deck = [{
-        id: '1',
-        name: 'Luke Skywalker',
-        height: 'Five or smth',
-        gender: 'Other hyhy',
-        eyecolor: 'Blyue as the Sky',
-        attack: 15,
-        type: 'Hero'
-    },
-    {
-        id: '2',
-        name: 'Vader',
-        height: 'Way too much',
-        gender: 'Shouldnt asked',
-        eyecolor: 'reeeeeddd',
-        attack: 14,
-        type: 'Villain'
-    },
-    {
-        id: '3',
-        name: 'CP3O',
-        height: 'Pretty tall fella',
-        gender: 'Robot-male',
-        eyecolor: 'Golden?',
-        attack: 13,
-        type: 'Hero'
-    },
-    {
-        id: '4',
-        name: 'R2-D2',
-        height: 'Very tiny, actually',
-        gender: 'Robot-male',
-        eyecolor: 'Hard to tell',
-        attack: 7,
-        type: 'Hero'
-    },
-    {
-        id: '5',
-        name: 'Arnold Szwarceneger',
-        height: 'Big Biceps',
-        gender: 'Terminator',
-        eyecolor: 'German',
-        attack: 10,
-        type: 'Hero'
-    },
-    {
-        id: '6',
-        name: 'Donald Trump',
-        height: 'Dunno, but big hands',
-        gender: 'Sigma Male',
-        eyecolor: 'Orange',
-        attack: 1,
-        type: 'Villain'
-    }
-    ]
 
 
     const turn = useSelector(selectTurn)
+    const deck = useSelector(selectDeckTwo)
     const [hand, setHand] = useState(deck)
     const played = useSelector(selectPlayedCardsTwo)
     const dispatch = useDispatch();

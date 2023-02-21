@@ -3,9 +3,10 @@ import styles from './index.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddCharacter, AddToDeck, SwitchFlag } from '../../redux/actions';
 import Card from '../Card';
-import { selectDeck, selectFlag, selectLastCharacter } from '../../redux/selectors';
+import { selectFlag, selectLastCharacter } from '../../redux/selectors';
 import cn from 'classnames';
 import { usePeople } from '../../apollo/hooks/usePeople';
+import { Player } from '../../redux/features/types/types';
 // import axios from 'axios';
 // import { Person } from '../../redux/features/types/types';
 
@@ -110,7 +111,7 @@ const SearchBar: React.FC = () => {
     const character = useSelector(selectLastCharacter);
 
     const handleSubmit2 = () => {
-        dispatch(AddToDeck(character))
+        dispatch(AddToDeck(character, Player.ONE))
         dispatch(SwitchFlag())
         setActive(!active)
     }

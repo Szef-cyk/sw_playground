@@ -4,7 +4,9 @@ export const selectCharacter = (state: RootState, name: string) => state.charact
     ;
 export const selectLastCharacter = (state: RootState) => state.characters[state.characters.length - 1];
 // export const selectLastCharacter = (state: RootState) => state.characters.pop();
-export const selectDeck = (state: RootState) => state.deck
+export const selectDeckOne = (state: RootState) => state.deck.one
+
+export const selectDeckTwo = (state: RootState) => state.deck.two
 
 export const selectHand = (state: RootState) => state.hand
 

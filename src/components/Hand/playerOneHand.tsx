@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { selectDeck, selectHand, selectPlayedCards } from '../../redux/selectors'
+import { selectHand, selectPlayedCards } from '../../redux/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './index.module.scss'
 import Card from '../Card'

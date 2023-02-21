@@ -4,7 +4,7 @@ import deckSlice from "./features/deck/deckSlice";
 import flagSlice from "./features/flag/flagSlice";
 import playedSlice from './features/playSection/playedSlice'
 import handSlice from './features/playSection/handSlice'
-import { Attack, Character, Flag, Game, Hearts, PlayedCards, Turn } from "./features/types/types";
+import { Attack, Character, Deck, Flag, Game, Hearts, PlayedCards, Turn } from "./features/types/types";
 import attackSlice from "./features/playSection/attackSlice";
 import turnSlice from "./features/flag/turnSlice";
 import playedSliceTwo from "./features/playSection/playedSliceTwo";
@@ -13,7 +13,7 @@ import gameSlice from "./features/playSection/gameSlice";
 
 const rootReducer = combineReducers<CombinedState<{
     characters: Character[]
-    deck: Character[]
+    deck: Deck
     hand: Character[]
     playedCards: Character[]
     playedCardsTwo: Character[]
