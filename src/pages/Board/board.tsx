@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import boardBackground from '../../assets/boardBackground.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAttack, selectDeckOne, selectHearts, selectPlayedCards, selectPlayedCardsTwo, selectPlayerOne, selectTurn } from '../../redux/selectors'
+import { selectAttack, selectDeckOne, selectGame, selectHearts, selectPlayedCards, selectPlayedCardsTwo, selectPlayerOne, } from '../../redux/selectors'
 import PlayerOneHand from '../../components/Hand/playerOneHand'
 import styles from './index.module.scss'
-import { Reset, Played, SwitchTurn, TwoLost, OneLost, AddToDeck, AddManyToDeck } from '../../redux/actions'
+import { Reset, Played, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn } from '../../redux/actions'
 import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
@@ -40,82 +40,21 @@ const Board = () => {
     const selectPlayerOneDeck = useSelector(selectDeckOne)
     const playerOneDeck = selectPlayerOneDeck
     const [deck, setDeck] = useState<Character[]>([])
-    const deckTwo: Character[] = [{
-        id: '1',
-        name: 'Luke Skywalker',
-        height: 'Five or smth',
-        gender: 'Other hyhy',
-        eyecolor: 'Blyue as the Sky',
-        attack: 15,
-        type: 'Hero'
-    },
-    {
-        id: '2',
-        name: 'Vader',
-        height: 'Way too much',
-        gender: 'Shouldnt asked',
-        eyecolor: 'reeeeeddd',
-        attack: 14,
-        type: 'Villain'
-    },
-    {
-        id: '3',
-        name: 'CP3O',
-        height: 'Pretty tall fella',
-        gender: 'Robot-male',
-        eyecolor: 'Golden?',
-        attack: 13,
-        type: 'Hero'
-    },
-    {
-        id: '4',
-        name: 'R2-D2',
-        height: 'Very tiny, actually',
-        gender: 'Robot-male',
-        eyecolor: 'Hard to tell',
-        attack: 7,
-        type: 'Hero'
-    },
-    {
-        id: '5',
-        name: 'Arnold Szwarceneger',
-        height: 'Big Biceps',
-        gender: 'Terminator',
-        eyecolor: 'German',
-        attack: 10,
-        type: 'Hero'
-    },
-    {
-        id: '6',
-        name: 'Donald Trump',
-        height: 'Dunno, but big hands',
-        gender: 'Sigma Male',
-        eyecolor: 'Orange',
-        type: 'Villain',
-        attack: 1,
-    }]
-    dispatch(AddManyToDeck(deckTwo, Player.TWO))
-    //to be written selectPlayerTwoDeck
-
+    const game = useSelector(selectGame)
     useEffect(() => {
         if (playerOne) {
             setDeck(playerOneDeck)
-            console.log('playerOneDeck?', playerOneDeck)
-
+            dispatch(PlayerOneTurn())
         } else {
             console.log('player two deck')
-            // console.log(isDeckSet)
         }
     }, [])
-
-
-    console.log('deck', deck)
 
     const handleButton = () => {
         if (numberPlayedCards >= 2) {
             setNumberPlayedCards(0)
             dispatch(Reset())
-            dispatch(SwitchTurn())
+            dispatch(PlayerTwoTurn())
             if (playerOneAttack > playerTwoAttack) {
                 dispatch(TwoLost())
             } else {
@@ -123,7 +62,7 @@ const Board = () => {
             }
         }
         else {
-            dispatch(SwitchTurn())
+            dispatch(PlayerTwoTurn())
             setNumberPlayedCards(numberPlayedCards + 1)
             setPlayPoints(1.5)
         }

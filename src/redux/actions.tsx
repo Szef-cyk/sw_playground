@@ -40,12 +40,14 @@ export const OneLost = () => ({ type: 'oneLost' })
 
 export const TwoLost = () => ({ type: 'twoLost' })
 
-export const SwitchTurn = () => ({ type: 'turnSwitch' })
-
 export const NextTurn = () => ({ type: 'nextTurn' })
 
 export const SelectPlayerOne = () => ({ type: 'selectPlayerOne' })
 
 export const SelectPlayerTwo = () => ({ type: 'selectPlayerTwo' })
+
+export const PlayerOneTurn = () => ({ type: 'playerOneTurn' })
+
+export const PlayerTwoTurn = () => ({ type: 'playerTwoTurn' })
 
 export type Actions = AddToDeckAction | AddManyToDeckAction
