@@ -26,7 +26,7 @@ export const AddToHand = (character: Character) => ({ type: "addToHand", payload
 
 export const SwitchFlag = () => ({ type: 'switchFlag' })
 
-export const PlayedCardsOne = (card: PlayedCards) => ({ type: 'playedCards', payload: card })
+export const PlayedCardsOne = (card: PlayedCards) => ({ type: 'playedCardsOne', payload: card })
 
 export const PlayedCardsTwo = (card: PlayedCards) => ({ type: 'playedCardsTwo', payload: card })
 

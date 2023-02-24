@@ -27,7 +27,7 @@ import { Character, Player } from '../../redux/features/types/types'
 const Board = () => {
     const dispatch = useDispatch()
     const playerOne = useSelector(selectPlayerOne)
-    const playedCards = useSelector(selectPlayedCardsOne)
+    const playedCardsOne = useSelector(selectPlayedCardsOne)
     const playedCardsTwo = useSelector(selectPlayedCardsTwo)
     const Hearts = useSelector(selectHearts)
     const attack = useSelector(selectAttack)
@@ -93,13 +93,13 @@ const Board = () => {
                     </div>
                     <div className={styles.cardBottom1}>
                         <div className={styles.card}>
-                            {playedCards[0] ? <PlayedCard {...playedCards[0]} margin={''} /> : null
+                            {playedCardsOne[0] ? <PlayedCard {...playedCardsOne[0]} margin={''} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardBottom2}>
                         <div className={styles.card}>
-                            {playedCards[1] ? <PlayedCard {...playedCards[1]} margin={''} /> : null
+                            {playedCardsOne[1] ? <PlayedCard {...playedCardsOne[1]} margin={''} /> : null
                             }
                         </div>
                     </div>

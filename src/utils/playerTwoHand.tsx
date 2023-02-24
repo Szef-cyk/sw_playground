@@ -6,7 +6,7 @@ import calculateDeckMargin from './calculateDeckMargin'
 import calculateContainerMargin from './calculateContainerMargin'
 import { Character } from '../redux/features/types/types'
 import CardBack from '../components/Card/cardBack'
-import { PlayerOneTurn } from '../redux/actions'
+import { PlayedCardsTwo, PlayerOneTurn } from '../redux/actions'
 
 const PlayerTwoHand = () => {
     const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const PlayerTwoHand = () => {
             setHand(hand.filter(card => card.id !== randomCard?.id));
             setSelectedCard(randomCard);
             dispatch(PlayerOneTurn())
+            dispatch(PlayedCardsTwo(randomCard))
         }
     }, [game.turn.two]);
 
