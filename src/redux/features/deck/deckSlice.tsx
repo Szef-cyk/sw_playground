@@ -9,7 +9,7 @@ export default function deckSlice(state: Deck = {
         height: 'Five or smth',
         gender: 'Other hyhy',
         eyecolor: 'Blyue as the Sky',
-        attack: 15,
+        attack: 16,
         type: 'Hero'
     }, {
         id: '2',
@@ -17,17 +17,43 @@ export default function deckSlice(state: Deck = {
         height: 'Way too much',
         gender: 'Shouldnt asked',
         eyecolor: 'reeeeeddd',
-        attack: 14,
+        attack: 15,
         type: 'Villain'
+    }, {
+        id: '3',
+        name: 'R2-D2',
+        height: 'Very tiny, actually',
+        gender: 'Robot-male',
+        eyecolor: 'Hard to tell',
+        attack: 12,
+        type: 'Hero'
     }, {
         id: '4',
         name: 'R2-D2',
         height: 'Very tiny, actually',
         gender: 'Robot-male',
         eyecolor: 'Hard to tell',
-        attack: 7,
+        attack: 12,
         type: 'Hero'
     },
+    {
+        id: '5',
+        name: 'Joe Biden',
+        height: 'Nice Sunglasses',
+        gender: 'Oldie but Goldie',
+        eyecolor: 'Freedom-Blue',
+        attack: 14,
+        type: 'Hero'
+    },
+    {
+        id: '6',
+        name: 'Andrzej Duda',
+        height: 'Round Face',
+        gender: 'True Slav',
+        eyecolor: 'Red and White',
+        type: 'Hero',
+        attack: 1,
+    }
 
     ],
     two: [{
@@ -36,7 +62,7 @@ export default function deckSlice(state: Deck = {
         height: 'Five or smth',
         gender: 'Other hyhy',
         eyecolor: 'Blyue as the Sky',
-        attack: 15,
+        attack: 16,
         type: 'Hero'
     },
     {
@@ -45,7 +71,7 @@ export default function deckSlice(state: Deck = {
         height: 'Way too much',
         gender: 'Shouldnt asked',
         eyecolor: 'reeeeeddd',
-        attack: 14,
+        attack: 15,
         type: 'Villain'
     },
     {
@@ -54,7 +80,7 @@ export default function deckSlice(state: Deck = {
         height: 'Pretty tall fella',
         gender: 'Robot-male',
         eyecolor: 'Golden?',
-        attack: 13,
+        attack: 11,
         type: 'Hero'
     },
     {
@@ -63,7 +89,7 @@ export default function deckSlice(state: Deck = {
         height: 'Very tiny, actually',
         gender: 'Robot-male',
         eyecolor: 'Hard to tell',
-        attack: 7,
+        attack: 12,
         type: 'Hero'
     },
     {
@@ -72,7 +98,7 @@ export default function deckSlice(state: Deck = {
         height: 'Big Biceps',
         gender: 'Terminator',
         eyecolor: 'German',
-        attack: 10,
+        attack: 14,
         type: 'Hero'
     },
     {

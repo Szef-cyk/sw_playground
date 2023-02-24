@@ -1,5 +1,8 @@
 import { AnyAction } from "redux";
+import { Actions, ActionType } from "../../actions";
 import { Game } from "../types/types";
+
+
 
 export default function attackSlice(state: Game = {
     player: {
@@ -9,10 +12,14 @@ export default function attackSlice(state: Game = {
     turn: {
         one: undefined,
         two: undefined
+    },
+    playPoints: {
+        one: 1.5,
+        two: 1.5
     }
-}, action: AnyAction): Game {
+}, action: Actions): Game {
     switch (action.type) {
-        case ('selectPlayerOne'): {
+        case ActionType.SELECT_PLAYER_ONE: {
             return Object.assign({}, state, {
                 player: {
                     one: true,
@@ -20,7 +27,7 @@ export default function attackSlice(state: Game = {
                 }
             });
         }
-        case ('selectPlayerTwo'): {
+        case ActionType.SELECT_PLAYER_TWO: {
             return Object.assign({}, state, {
                 player: {
                     one: false,
@@ -28,7 +35,7 @@ export default function attackSlice(state: Game = {
                 }
             });
         }
-        case ('playerOneTurn'): {
+        case ActionType.PLAYER_ONE_TURN: {
             return Object.assign({}, state, {
                 turn: {
                     one: true,
@@ -36,11 +43,26 @@ export default function attackSlice(state: Game = {
                 }
             });
         }
-        case ('playerTwoTurn'): {
+        case ActionType.PLAYER_TWO_TURN: {
             return Object.assign({}, state, {
                 turn: {
                     one: false,
                     two: true
+                }
+            });
+        }
+        case ActionType.PLAY_POINTS: {
+            return Object.assign({}, state, {
+                playPoints: {
+                    [action.payload.player]: 1.5
+                }
+            });
+        }
+
+        case ActionType.PLAY_POINT_LOST: {
+            return Object.assign({}, state, {
+                playPoints: {
+                    [action.payload.player]: state.playPoints[action.payload.player] - 1
                 }
             });
         }

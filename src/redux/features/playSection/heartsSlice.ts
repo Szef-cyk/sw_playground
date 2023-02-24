@@ -17,12 +17,12 @@ export default function playedSlice(state: Hearts = {
                 playerTwo: state.playerTwo - 1
             })
         }
-        // case ('reset'): {
-        //     return Object.assign({}, state, {
-        //         playerOne: 3,
-        //         playerTwo: 3
-        //     });
-        // }
+        case ('tie'): {
+            return Object.assign({}, state, {
+                playerOne: state.playerOne - 1,
+                playerTwo: state.playerTwo - 1
+            });
+        }
         default:
             return state;
     }

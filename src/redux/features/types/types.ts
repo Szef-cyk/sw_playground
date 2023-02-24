@@ -66,6 +66,10 @@ export interface Game {
         one?: boolean,
         two?: boolean
     }
+    playPoints: {
+        one: number,
+        two: number
+    }
 }
 
 export interface Deck {

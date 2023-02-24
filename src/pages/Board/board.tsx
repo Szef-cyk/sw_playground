@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectAttack, selectDeckOne, selectGame, selectHearts, selectPlayedCardsOne, selectPlayedCardsTwo, selectPlayerOne, } from '../../redux/selectors'
 import PlayerOneHand from '../../components/Hand/playerOneHand'
 import styles from './index.module.scss'
-import { Reset, PlayedCardsOne, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn } from '../../redux/actions'
+import { Reset, PlayedCardsOne, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn, Tie, PlayerPoints } from '../../redux/actions'
 import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
@@ -26,24 +26,24 @@ import { Character, Player } from '../../redux/features/types/types'
 
 const Board = () => {
     const dispatch = useDispatch()
+    const game = useSelector(selectGame)
     const playerOne = useSelector(selectPlayerOne)
     const playedCardsOne = useSelector(selectPlayedCardsOne)
     const playedCardsTwo = useSelector(selectPlayedCardsTwo)
+    const selectPlayerOneDeck = useSelector(selectDeckOne)
     const Hearts = useSelector(selectHearts)
     const attack = useSelector(selectAttack)
     const playerOneHearts = Hearts.playerOne
     const playerTwoHearts = Hearts.playerTwo
     const playerOneAttack = attack.playerOne
     const playerTwoAttack = attack.playerTwo
-    const [playPoints, setPlayPoints] = useState(1.5)
-    const [numberPlayedCards, setNumberPlayedCards] = useState(0)
-    const selectPlayerOneDeck = useSelector(selectDeckOne)
-    const playerOneDeck = selectPlayerOneDeck
+    const playerOnePlayPoints = game.playPoints.one
+    // const [playPoints, setPlayPoints] = useState(1.5)
     const [deck, setDeck] = useState<Character[]>([])
-    const game = useSelector(selectGame)
+
     useEffect(() => {
         if (playerOne) {
-            setDeck(playerOneDeck)
+            setDeck(selectPlayerOneDeck)
             dispatch(PlayerOneTurn())
         } else {
             console.log('player two deck')
@@ -51,11 +51,13 @@ const Board = () => {
     }, [])
 
     const handleButton = () => {
-        if (numberPlayedCards >= 2) {
-            setNumberPlayedCards(0)
+        if (playedCardsOne.length === 2 && playedCardsTwo.length === 2) {
             dispatch(Reset())
             dispatch(PlayerTwoTurn())
-            if (playerOneAttack > playerTwoAttack) {
+            if (playerOneAttack === playerTwoAttack) {
+                dispatch(Tie())
+            }
+            else if (playerOneAttack > playerTwoAttack) {
                 dispatch(TwoLost())
             } else {
                 dispatch(OneLost())
@@ -63,8 +65,7 @@ const Board = () => {
         }
         else {
             dispatch(PlayerTwoTurn())
-            setNumberPlayedCards(numberPlayedCards + 1)
-            setPlayPoints(1.5)
+            dispatch(PlayerPoints(Player.ONE))
         }
     }
 
@@ -122,7 +123,7 @@ const Board = () => {
                     </div>
                 </div>
                 <div className={styles.handContainer}>
-                    <PlayerOneHand playPoints={playPoints} setPlayPoints={setPlayPoints} deck={deck} />
+                    <PlayerOneHand deck={deck} />
                 </div>
             </div> : null
         }

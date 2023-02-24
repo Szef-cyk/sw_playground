@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { selectHand, selectPlayedCardsOne } from '../../redux/selectors'
+import { selectGame, selectHand, selectPlayedCardsOne } from '../../redux/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './index.module.scss'
 import Card from '../Card'
 import { handleError } from '@apollo/client/link/http/parseAndCheckHttpResponse'
 import calculateDeckMargin from '../../utils/calculateDeckMargin'
 import calculateContainerMargin from '../../utils/calculateContainerMargin'
-import { Attack, PlayedCardsOne } from '../../redux/actions'
-import { Character } from '../../redux/features/types/types'
+import { Attack, PlayedCardsOne, PlayerPointLost } from '../../redux/actions'
+import { Character, Player } from '../../redux/features/types/types'
 
 
 
-const PlayerOneHand: React.FC<{ playPoints: number, deck: Character[], setPlayPoints: React.Dispatch<React.SetStateAction<number>> }> = ({ playPoints, setPlayPoints, deck }) => {
-    // const deck = deck
+const PlayerOneHand: React.FC<{ deck: Character[] }> = ({ deck }) => {
+    const game = useSelector(selectGame)
     const [hand, setHand] = useState(deck)
     const played = useSelector(selectPlayedCardsOne)
     const dispatch = useDispatch();
@@ -20,14 +20,14 @@ const PlayerOneHand: React.FC<{ playPoints: number, deck: Character[], setPlayPo
         if (played.length === 2) {
             return alert('You played all the cards. End Turn.')
         }
-        if (playPoints < 1) {
+        if (game.playPoints.one < 1) {
             return alert('You can play only one card per turn.')
         }
         const choosenOne = hand.find((character) => character.id === id)
         if (choosenOne === undefined) {
             throw new TypeError('No such card my friend.')
         }
-        setPlayPoints(playPoints - 1)
+        dispatch(PlayerPointLost(Player.ONE))
         dispatch(PlayedCardsOne(choosenOne))
         const attack = choosenOne.attack
         dispatch(Attack(attack))
