@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import boardBackground from '../../assets/boardBackground.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAttack, selectDeckOne, selectGame, selectHearts, selectPlayedCards, selectPlayedCardsTwo, selectPlayerOne, } from '../../redux/selectors'
+import { selectAttack, selectDeckOne, selectGame, selectHearts, selectPlayedCardsOne, selectPlayedCardsTwo, selectPlayerOne, } from '../../redux/selectors'
 import PlayerOneHand from '../../components/Hand/playerOneHand'
 import styles from './index.module.scss'
-import { Reset, Played, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn } from '../../redux/actions'
+import { Reset, PlayedCardsOne, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn } from '../../redux/actions'
 import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
@@ -27,7 +27,7 @@ import { Character, Player } from '../../redux/features/types/types'
 const Board = () => {
     const dispatch = useDispatch()
     const playerOne = useSelector(selectPlayerOne)
-    const playedCards = useSelector(selectPlayedCards)
+    const playedCards = useSelector(selectPlayedCardsOne)
     const playedCardsTwo = useSelector(selectPlayedCardsTwo)
     const Hearts = useSelector(selectHearts)
     const attack = useSelector(selectAttack)

@@ -3,9 +3,9 @@ import Deck from "../../../pages/Deck";
 import { Character, PlayedCards } from "../types/types";
 
 
-export default function playedSliceTwo(state: Character[] = [], action: AnyAction): Character[] {
+export default function playedCardsTwoSlice(state: Character[] = [], action: AnyAction): Character[] {
     switch (action.type) {
-        case "playedTwo": {
+        case "playedCardsTwo": {
             return [
                 ...state,
                 action.payload

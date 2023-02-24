@@ -12,7 +12,7 @@ export const selectHand = (state: RootState) => state.hand
 
 export const selectFlag = (state: RootState) => state.flag.isVisible
 
-export const selectPlayedCards = (state: RootState) => state.playedCards
+export const selectPlayedCardsOne = (state: RootState) => state.playedCardsOne
 
 export const selectPlayedCardsTwo = (state: RootState) => state.playedCardsTwo
 

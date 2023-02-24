@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { selectHand, selectPlayedCards } from '../../redux/selectors'
+import { selectHand, selectPlayedCardsOne } from '../../redux/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './index.module.scss'
 import Card from '../Card'
 import { handleError } from '@apollo/client/link/http/parseAndCheckHttpResponse'
 import calculateDeckMargin from '../../utils/calculateDeckMargin'
 import calculateContainerMargin from '../../utils/calculateContainerMargin'
-import { Attack, Played } from '../../redux/actions'
+import { Attack, PlayedCardsOne } from '../../redux/actions'
 import { Character } from '../../redux/features/types/types'
 
 
@@ -14,7 +14,7 @@ import { Character } from '../../redux/features/types/types'
 const PlayerOneHand: React.FC<{ playPoints: number, deck: Character[], setPlayPoints: React.Dispatch<React.SetStateAction<number>> }> = ({ playPoints, setPlayPoints, deck }) => {
     // const deck = deck
     const [hand, setHand] = useState(deck)
-    const played = useSelector(selectPlayedCards)
+    const played = useSelector(selectPlayedCardsOne)
     const dispatch = useDispatch();
     const chooseCard = (id: string) => {
         if (played.length === 2) {
@@ -28,7 +28,7 @@ const PlayerOneHand: React.FC<{ playPoints: number, deck: Character[], setPlayPo
             throw new TypeError('No such card my friend.')
         }
         setPlayPoints(playPoints - 1)
-        dispatch(Played(choosenOne))
+        dispatch(PlayedCardsOne(choosenOne))
         const attack = choosenOne.attack
         dispatch(Attack(attack))
         const index = hand.indexOf(choosenOne)
