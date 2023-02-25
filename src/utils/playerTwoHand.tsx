@@ -4,9 +4,9 @@ import { selectAttack, selectDeckTwo, selectGame, selectPlayedCardsOne, selectPl
 import styles from './index.module.scss'
 import calculateDeckMargin from './calculateDeckMargin'
 import calculateContainerMargin from './calculateContainerMargin'
-import { Character } from '../redux/features/types/types'
+import { Character, Player } from '../redux/features/types/types'
 import CardBack from '../components/Card/cardBack'
-import { AttackTwo, OneLost, PlayedCardsTwo, PlayerOneTurn, PlayerTwoTurn, Reset, Tie, TwoLost } from '../redux/actions'
+import { AttackTwo, OneLost, PlayedCardsTwo, PlayerOneTurn, PlayerPointLost, PlayerPoints, PlayerTwoTurn, Reset, Tie, TwoLost } from '../redux/actions'
 
 const PlayerTwoHand = () => {
     const dispatch = useDispatch();
@@ -17,16 +17,14 @@ const PlayerTwoHand = () => {
     const game = useSelector(selectGame)
     const [hand, setHand] = useState<Character[]>(deck)
     const [selectedCard, setSelectedCard] = useState<Character>();
-    // const [numberPlayedCards, setNumberPlayedCards] = useState(0)
     const playerOneAttack = attack.playerOne
     const playerTwoAttack = attack.playerTwo
 
     useEffect(() => {
         if (playedCardsTwo.length === 2 && playedCardsOne.length === 2) {
-            console.log('first condition')
-            // setNumberPlayedCards(0)
             dispatch(Reset())
             dispatch(PlayerOneTurn())
+
             if (playerOneAttack === playerTwoAttack) {
                 dispatch(Tie())
             }
@@ -42,21 +40,21 @@ const PlayerTwoHand = () => {
     useEffect(() => {
         if (selectedCard || !hand.length) return;
         if (game.turn.two) {
-            console.log('second condition')
             const randomCard = hand[Math.floor(Math.random() * hand.length)];
             setHand(hand.filter(card => card.id !== randomCard?.id));
-            setSelectedCard(randomCard);
-            dispatch(PlayerOneTurn())
-            dispatch(PlayedCardsTwo(randomCard))
             const attack = randomCard.attack
+            dispatch(PlayerPointLost(Player.TWO))
+            setSelectedCard(randomCard);
+            dispatch(PlayedCardsTwo(randomCard))
             dispatch(AttackTwo(attack))
-            // setNumberPlayedCards(numberPlayedCards + 1)
+            dispatch(PlayerOneTurn())
         }
     }, [game.turn.two]);
 
     useEffect(() => {
         if (game.turn.one === undefined) return console.log;
         if (game.turn.one) return console.log;
+        dispatch(PlayerPoints(Player.TWO))
         setSelectedCard(undefined);
     }, [game.turn.one])
 

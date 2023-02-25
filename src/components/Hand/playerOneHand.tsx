@@ -17,6 +17,7 @@ const PlayerOneHand: React.FC<{ deck: Character[] }> = ({ deck }) => {
     const played = useSelector(selectPlayedCardsOne)
     const dispatch = useDispatch();
     const chooseCard = (id: string) => {
+        console.log(game.playPoints.one)
         if (played.length === 2) {
             return alert('You played all the cards. End Turn.')
         }

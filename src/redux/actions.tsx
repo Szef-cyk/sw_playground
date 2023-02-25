@@ -53,9 +53,9 @@ export const AddToDeck = (character: Character, player: Player): AddToDeckAction
 
 export const AddManyToDeck = (characters: Character[], player: Player): AddManyToDeckAction => ({ type: ActionType.TO_DECK_MANY, payload: { characters, player } })
 
-export const PlayerPoints = (player: Player) => ({ type: ActionType.PLAY_POINTS, payload: (player) })
+export const PlayerPoints = (player: Player) => ({ type: ActionType.PLAY_POINTS, payload: { player } })
 
-export const PlayerPointLost = (player: Player) => ({ type: ActionType.PLAY_POINT_LOST, payload: (player) })
+export const PlayerPointLost = (player: Player) => ({ type: ActionType.PLAY_POINT_LOST, payload: { player } })
 
 export const AddToHand = (character: Character) => ({ type: "addToHand", payload: character })
 

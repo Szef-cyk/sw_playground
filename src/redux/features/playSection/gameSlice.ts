@@ -54,19 +54,21 @@ export default function attackSlice(state: Game = {
         case ActionType.PLAY_POINTS: {
             return Object.assign({}, state, {
                 playPoints: {
+                    ...state.playPoints,
                     [action.payload.player]: 1.5
                 }
             });
         }
+        case ActionType.PLAY_POINT_LOST:
 
-        case ActionType.PLAY_POINT_LOST: {
-            return Object.assign({}, state, {
-                playPoints: {
-                    [action.payload.player]: state.playPoints[action.payload.player] - 1
-                }
-            });
-        }
-
+            const updatedPlayPoints = {
+                ...state.playPoints,
+                [action.payload.player]: state.playPoints[action.payload.player] - 1
+            };
+            return {
+                ...state,
+                playPoints: updatedPlayPoints
+            };
         default:
             return state
     }

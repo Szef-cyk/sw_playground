@@ -52,8 +52,6 @@ const Board = () => {
 
     const handleButton = () => {
         if (playedCardsOne.length === 2 && playedCardsTwo.length === 2) {
-            dispatch(Reset())
-            dispatch(PlayerTwoTurn())
             if (playerOneAttack === playerTwoAttack) {
                 dispatch(Tie())
             }
@@ -62,6 +60,8 @@ const Board = () => {
             } else {
                 dispatch(OneLost())
             }
+            dispatch(Reset())
+            dispatch(PlayerTwoTurn())
         }
         else {
             dispatch(PlayerTwoTurn())
