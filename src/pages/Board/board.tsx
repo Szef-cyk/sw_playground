@@ -4,25 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectAttack, selectDeckOne, selectGame, selectHearts, selectPlayedCardsOne, selectPlayedCardsTwo, selectPlayerOne, } from '../../redux/selectors'
 import PlayerOneHand from '../../components/Hand/playerOneHand'
 import styles from './index.module.scss'
-import { Reset, PlayedCardsOne, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn, Tie, PlayerPoints } from '../../redux/actions'
+import { Reset, PlayedCardsOne, TwoLost, OneLost, AddToDeck, AddManyToDeck, PlayerOneTurn, PlayerTwoTurn, Tie, PlayerPoints, FirstTurn } from '../../redux/actions'
 import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
 import { Character, Player } from '../../redux/features/types/types'
-
-// const state = {player: {one: true, two: true}, ture: {one: true, two: false}};
-// const deck = {playerOne: [], playerTwo: []};
-
-/// 
-// component
-///
-
-// based on state
-// const who = 'one';
-
-// return <div>
-//     <span>{state.player[who] && deck[who].map(card => card)}</span>
-// </div>
 
 const Board = () => {
     const dispatch = useDispatch()
@@ -45,13 +31,15 @@ const Board = () => {
         if (playerOne) {
             setDeck(selectPlayerOneDeck)
             dispatch(PlayerOneTurn())
+            dispatch(FirstTurn(Player.ONE))
         } else {
             console.log('player two deck')
         }
     }, [])
 
     const handleButton = () => {
-        if (playedCardsOne.length === 2 && playedCardsTwo.length === 2) {
+        if (playedCardsOne.length === 2 && playedCardsTwo.length === 2 && game.turn.firstTurn === Player.ONE) {
+            console.log("ONE ends turn")
             if (playerOneAttack === playerTwoAttack) {
                 dispatch(Tie())
             }
@@ -61,6 +49,7 @@ const Board = () => {
                 dispatch(OneLost())
             }
             dispatch(Reset())
+            dispatch(FirstTurn(Player.TWO))
             dispatch(PlayerTwoTurn())
         }
         else {

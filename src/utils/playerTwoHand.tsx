@@ -6,7 +6,7 @@ import calculateDeckMargin from './calculateDeckMargin'
 import calculateContainerMargin from './calculateContainerMargin'
 import { Character, Player } from '../redux/features/types/types'
 import CardBack from '../components/Card/cardBack'
-import { AttackTwo, OneLost, PlayedCardsTwo, PlayerOneTurn, PlayerPointLost, PlayerPoints, PlayerTwoTurn, Reset, Tie, TwoLost } from '../redux/actions'
+import { AttackTwo, FirstTurn, OneLost, PlayedCardsTwo, PlayerOneTurn, PlayerPointLost, PlayerPoints, PlayerTwoTurn, Reset, Tie, TwoLost } from '../redux/actions'
 
 const PlayerTwoHand = () => {
     const dispatch = useDispatch();
@@ -21,10 +21,8 @@ const PlayerTwoHand = () => {
     const playerTwoAttack = attack.playerTwo
 
     useEffect(() => {
-        if (playedCardsTwo.length === 2 && playedCardsOne.length === 2) {
-            dispatch(Reset())
-            dispatch(PlayerOneTurn())
-
+        if (playedCardsTwo.length === 2 && playedCardsOne.length === 2 && game.turn.firstTurn === Player.TWO) {
+            console.log("TWO ends turn")
             if (playerOneAttack === playerTwoAttack) {
                 dispatch(Tie())
             }
@@ -33,8 +31,11 @@ const PlayerTwoHand = () => {
             } else {
                 dispatch(OneLost())
             }
+            dispatch(Reset())
+            dispatch(PlayerOneTurn())
+            dispatch(FirstTurn(Player.ONE))
         }
-    }, [])
+    }, [game.turn.two])
 
 
     useEffect(() => {

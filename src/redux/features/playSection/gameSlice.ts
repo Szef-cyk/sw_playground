@@ -10,6 +10,7 @@ export default function attackSlice(state: Game = {
         two: undefined
     },
     turn: {
+        firstTurn: undefined,
         one: undefined,
         two: undefined
     },
@@ -19,6 +20,7 @@ export default function attackSlice(state: Game = {
     }
 }, action: Actions): Game {
     switch (action.type) {
+
         case ActionType.SELECT_PLAYER_ONE: {
             return Object.assign({}, state, {
                 player: {
@@ -35,9 +37,18 @@ export default function attackSlice(state: Game = {
                 }
             });
         }
+        case ActionType.FIRST_TURN: {
+            return Object.assign({}, state, {
+                turn: {
+                    ...state.turn,
+                    firstTurn: action.payload.player
+                }
+            });
+        }
         case ActionType.PLAYER_ONE_TURN: {
             return Object.assign({}, state, {
                 turn: {
+                    ...state.turn,
                     one: true,
                     two: false
                 }
@@ -46,6 +57,7 @@ export default function attackSlice(state: Game = {
         case ActionType.PLAYER_TWO_TURN: {
             return Object.assign({}, state, {
                 turn: {
+                    ...state.turn,
                     one: false,
                     two: true
                 }

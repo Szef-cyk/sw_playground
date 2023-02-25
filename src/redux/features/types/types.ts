@@ -63,6 +63,7 @@ export interface Game {
         two?: boolean
     }
     turn: {
+        firstTurn?: Player,
         one?: boolean,
         two?: boolean
     }

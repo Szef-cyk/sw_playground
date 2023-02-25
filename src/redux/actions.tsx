@@ -9,8 +9,14 @@ export enum ActionType {
     SELECT_PLAYER_ONE = 'selectPlayerOne',
     SELECT_PLAYER_TWO = 'selectPlayerTwo',
     PLAYER_ONE_TURN = 'playerOneTurn',
-    PLAYER_TWO_TURN = 'playerTwoTurn'
+    PLAYER_TWO_TURN = 'playerTwoTurn',
+    FIRST_TURN = 'firstTurn'
 
+}
+
+export type FirstTurnAction = {
+    type: ActionType.FIRST_TURN,
+    payload: { player: Player }
 }
 
 export type SelectPlayerOneAction = {
@@ -57,6 +63,8 @@ export const PlayerPoints = (player: Player) => ({ type: ActionType.PLAY_POINTS,
 
 export const PlayerPointLost = (player: Player) => ({ type: ActionType.PLAY_POINT_LOST, payload: { player } })
 
+export const FirstTurn = (player: Player) => ({ type: ActionType.FIRST_TURN, payload: { player } })
+
 export const AddToHand = (character: Character) => ({ type: "addToHand", payload: character })
 
 export const SwitchFlag = () => ({ type: 'switchFlag' })
@@ -88,4 +96,4 @@ export const PlayerOneTurn = () => ({ type: ActionType.PLAYER_ONE_TURN })
 export const PlayerTwoTurn = () => ({ type: ActionType.PLAYER_TWO_TURN })
 
 
-export type Actions = AddToDeckAction | AddManyToDeckAction | SetPlayPointsAction | SetPlayPointLostAction | SelectPlayerOneAction | SelectPlayerTwoAction | PlayerOneTurnAction | PlayerTwoTurnAction
+export type Actions = AddToDeckAction | AddManyToDeckAction | SetPlayPointsAction | SetPlayPointLostAction | SelectPlayerOneAction | SelectPlayerTwoAction | PlayerOneTurnAction | PlayerTwoTurnAction | FirstTurnAction
