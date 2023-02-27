@@ -20,8 +20,12 @@ const PlayerTwoHand = () => {
     const playerOneAttack = attack.playerOne
     const playerTwoAttack = attack.playerTwo
 
+    const isTurnTwoEnding = playedCardsTwo.length === 2 && playedCardsOne.length === 2 && game.turn.firstTurn === Player.TWO;
+    const [isFirstEffectTriggered, setIsFirstEffectTriggered] = useState(false);
+
+
     useEffect(() => {
-        if (playedCardsTwo.length === 2 && playedCardsOne.length === 2 && game.turn.firstTurn === Player.TWO) {
+        if (isTurnTwoEnding) {
             console.log("TWO ends turn")
             if (playerOneAttack === playerTwoAttack) {
                 dispatch(Tie())
@@ -34,12 +38,13 @@ const PlayerTwoHand = () => {
             dispatch(Reset())
             dispatch(PlayerOneTurn())
             dispatch(FirstTurn(Player.ONE))
+            setIsFirstEffectTriggered(true);
         }
-    }, [game.turn.two])
+    }, [game.turn.two, isTurnTwoEnding])
 
 
     useEffect(() => {
-        if (selectedCard || !hand.length) return;
+        if (isFirstEffectTriggered || selectedCard || !hand.length) return;
         if (game.turn.two) {
             const randomCard = hand[Math.floor(Math.random() * hand.length)];
             setHand(hand.filter(card => card.id !== randomCard?.id));
@@ -50,7 +55,7 @@ const PlayerTwoHand = () => {
             dispatch(AttackTwo(attack))
             dispatch(PlayerOneTurn())
         }
-    }, [game.turn.two]);
+    }, [game.turn.two, isFirstEffectTriggered]);
 
     useEffect(() => {
         if (game.turn.one === undefined) return console.log;

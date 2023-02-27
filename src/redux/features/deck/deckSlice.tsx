@@ -38,19 +38,19 @@ export default function deckSlice(state: Deck = {
     },
     {
         id: '5',
-        name: 'Joe Biden',
-        height: 'Nice Sunglasses',
-        gender: 'Oldie but Goldie',
-        eyecolor: 'Freedom-Blue',
+        name: 'Spider-Man',
+        height: 'Something',
+        gender: 'Spider Male, hyhy',
+        eyecolor: 'White?',
         attack: 14,
         type: 'Hero'
     },
     {
         id: '6',
-        name: 'Andrzej Duda',
-        height: 'Round Face',
-        gender: 'True Slav',
-        eyecolor: 'Red and White',
+        name: 'Obi-Wan',
+        height: 'Something',
+        gender: 'Male',
+        eyecolor: 'Blue',
         type: 'Hero',
         attack: 1,
     }
@@ -103,12 +103,12 @@ export default function deckSlice(state: Deck = {
     },
     {
         id: '6',
-        name: 'Donald Trump',
-        height: 'Dunno, but big hands',
-        gender: 'Sigma Male',
-        eyecolor: 'Orange',
+        name: 'Peter Parker',
+        height: 'Tall for a spider',
+        gender: 'Male',
+        eyecolor: 'Brown',
         type: 'Villain',
-        attack: 1,
+        attack: 12,
     }]
 }, action: Actions): Deck {
     switch (action.type) {
