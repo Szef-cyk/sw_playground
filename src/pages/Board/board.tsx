@@ -23,7 +23,7 @@ const Board = () => {
     const playerTwoHearts = Hearts.playerTwo
     const playerOneAttack = attack.playerOne
     const playerTwoAttack = attack.playerTwo
-    const playerOnePlayPoints = game.playPoints.one
+    // const playerOnePlayPoints = game.playPoints.one
     // const [playPoints, setPlayPoints] = useState(1.5)
     const [deck, setDeck] = useState<Character[]>([])
 
@@ -52,6 +52,21 @@ const Board = () => {
             dispatch(FirstTurn(Player.TWO))
             dispatch(PlayerTwoTurn())
         }
+        else if (playedCardsOne.length === 2 && playedCardsTwo.length === 2 && game.turn.firstTurn === Player.TWO) {
+            console.log("TWO ends turn")
+            if (playerOneAttack === playerTwoAttack) {
+                dispatch(Tie())
+            }
+            else if (playerOneAttack > playerTwoAttack) {
+                dispatch(TwoLost())
+            } else {
+                dispatch(OneLost())
+            }
+            dispatch(Reset())
+            dispatch(PlayerPoints(Player.ONE))
+            dispatch(PlayerOneTurn())
+            dispatch(FirstTurn(Player.ONE))
+        }
         else {
             dispatch(PlayerTwoTurn())
             dispatch(PlayerPoints(Player.ONE))
@@ -71,25 +86,25 @@ const Board = () => {
                     </div>
                     <div className={styles.cardTop1}>
                         <div className={styles.card}>
-                            {playedCardsTwo[0] ? <PlayedCard {...playedCardsTwo[0]} margin={''} /> : null
+                            {playedCardsTwo[0] ? <PlayedCard {...playedCardsTwo[0]} margin={''} key={playedCardsTwo[0].id} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardTop2}>
                         <div className={styles.card}>
-                            {playedCardsTwo[1] ? <PlayedCard {...playedCardsTwo[1]} margin={''} /> : null
+                            {playedCardsTwo[1] ? <PlayedCard {...playedCardsTwo[1]} margin={''} key={playedCardsTwo[0].id} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardBottom1}>
                         <div className={styles.card}>
-                            {playedCardsOne[0] ? <PlayedCard {...playedCardsOne[0]} margin={''} /> : null
+                            {playedCardsOne[0] ? <PlayedCard {...playedCardsOne[0]} margin={''} key={playedCardsOne[0].id} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardBottom2}>
                         <div className={styles.card}>
-                            {playedCardsOne[1] ? <PlayedCard {...playedCardsOne[1]} margin={''} /> : null
+                            {playedCardsOne[1] ? <PlayedCard {...playedCardsOne[1]} margin={''} key={playedCardsOne[0].id} /> : null
                             }
                         </div>
                     </div>

@@ -20,31 +20,10 @@ const PlayerTwoHand = () => {
     const playerOneAttack = attack.playerOne
     const playerTwoAttack = attack.playerTwo
 
-    const isTurnTwoEnding = playedCardsTwo.length === 2 && playedCardsOne.length === 2 && game.turn.firstTurn === Player.TWO;
-    const [isFirstEffectTriggered, setIsFirstEffectTriggered] = useState(false);
 
 
     useEffect(() => {
-        if (isTurnTwoEnding) {
-            console.log("TWO ends turn")
-            if (playerOneAttack === playerTwoAttack) {
-                dispatch(Tie())
-            }
-            else if (playerOneAttack > playerTwoAttack) {
-                dispatch(TwoLost())
-            } else {
-                dispatch(OneLost())
-            }
-            dispatch(Reset())
-            dispatch(PlayerOneTurn())
-            dispatch(FirstTurn(Player.ONE))
-            setIsFirstEffectTriggered(true);
-        }
-    }, [game.turn.two, isTurnTwoEnding])
-
-
-    useEffect(() => {
-        if (isFirstEffectTriggered || selectedCard || !hand.length) return;
+        if (selectedCard || !hand.length) return console.log('empty hand');
         if (game.turn.two) {
             const randomCard = hand[Math.floor(Math.random() * hand.length)];
             setHand(hand.filter(card => card.id !== randomCard?.id));
@@ -55,14 +34,31 @@ const PlayerTwoHand = () => {
             dispatch(AttackTwo(attack))
             dispatch(PlayerOneTurn())
         }
-    }, [game.turn.two, isFirstEffectTriggered]);
+    }, [game.turn, hand, playedCardsOne, playedCardsTwo])
+
+    // useEffect(() => {
+    //     if (playedCardsTwo.length === 2 && playedCardsOne.length === 2 && game.turn.firstTurn === Player.TWO) {
+    //         console.log("TWO ends turn")
+    //         if (playerOneAttack === playerTwoAttack) {
+    //             dispatch(Tie())
+    //         }
+    //         else if (playerOneAttack > playerTwoAttack) {
+    //             dispatch(TwoLost())
+    //         } else {
+    //             dispatch(OneLost())
+    //         }
+    //         dispatch(Reset())
+    //         dispatch(PlayerOneTurn())
+    //         dispatch(FirstTurn(Player.ONE))
+    //     }
+    // }, [game.turn])
 
     useEffect(() => {
         if (game.turn.one === undefined) return console.log;
         if (game.turn.one) return console.log;
         dispatch(PlayerPoints(Player.TWO))
         setSelectedCard(undefined);
-    }, [game.turn.one])
+    }, [game])
 
     const margin = calculateDeckMargin(hand.length)
     const containerMargin = calculateContainerMargin(hand.length)
