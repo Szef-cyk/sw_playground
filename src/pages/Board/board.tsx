@@ -9,6 +9,7 @@ import PlayerTwoHand from '../../utils/playerTwoHand'
 import PlayedCard from '../../components/Card/playedCard'
 import heart from '../../assets/heart.png'
 import { Character, Player } from '../../redux/features/types/types'
+import classNames from 'classnames'
 
 const Board = () => {
     const dispatch = useDispatch()
@@ -74,7 +75,7 @@ const Board = () => {
     }
 
     return (
-        <> {deck.length > 0 ?
+        <> {deck.length ?
             <div className={styles.background} style={{ backgroundImage: `url(${boardBackground})` }}>
                 <PlayerTwoHand />
                 <div className={styles.boardContainer}>
@@ -85,25 +86,25 @@ const Board = () => {
                         <div className={styles.specialCard}></div>
                     </div>
                     <div className={styles.cardTop1}>
-                        <div className={styles.card}>
+                        <div className={classNames(styles.card, { [styles.active]: !!playedCardsTwo[0] })}>
                             {playedCardsTwo[0] ? <PlayedCard {...playedCardsTwo[0]} margin={''} key={playedCardsTwo[0].id} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardTop2}>
-                        <div className={styles.card}>
+                        <div className={classNames(styles.card, { [styles.active]: !!playedCardsTwo[1] })}>
                             {playedCardsTwo[1] ? <PlayedCard {...playedCardsTwo[1]} margin={''} key={playedCardsTwo[0].id} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardBottom1}>
-                        <div className={styles.card}>
+                        <div className={classNames(styles.card, { [styles.active]: !!playedCardsOne[0] })}>
                             {playedCardsOne[0] ? <PlayedCard {...playedCardsOne[0]} margin={''} key={playedCardsOne[0].id} /> : null
                             }
                         </div>
                     </div>
                     <div className={styles.cardBottom2}>
-                        <div className={styles.card}>
+                        <div className={classNames(styles.card, { [styles.active]: !!playedCardsOne[1] })}>
                             {playedCardsOne[1] ? <PlayedCard {...playedCardsOne[1]} margin={''} key={playedCardsOne[0].id} /> : null
                             }
                         </div>

@@ -75,21 +75,19 @@
 }
 
 //Elements displayed
+$card-opacity: 30%;
 
 .card {
-    // border: 2px solid var(--white-color);
     background-color: var(--white-color);
-    // opacity: 30%;
+    opacity: $card-opacity;
     height: var(--playedCardHeight);
     width: var(--playedCardWidth);
     margin: auto;
-
 }
 
 .specialCard {
-    // border: 2px solid var(--accent-color);
     background-color: var(--accent-color);
-    opacity: 30%;
+    opacity: $card-opacity;
     height: 25rem;
     width: 16.875rem;
     margin: auto;
@@ -122,4 +120,8 @@
     justify-content: center;
     width: 100vw;
     bottom: -40%;
+}
+
+.active {
+    opacity: 1;
 }

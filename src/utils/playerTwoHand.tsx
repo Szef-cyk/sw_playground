@@ -55,7 +55,7 @@ const PlayerTwoHand = () => {
 
     useEffect(() => {
         if (game.turn.one === undefined) return console.log;
-        if (game.turn.one) return console.log;
+        if (game.turn.one || !hand.length) return console.log('the end');
         dispatch(PlayerPoints(Player.TWO))
         setSelectedCard(undefined);
     }, [game])
@@ -76,6 +76,7 @@ const PlayerTwoHand = () => {
                     )
                 })}
             </div>
+
         </>
     )
 }
