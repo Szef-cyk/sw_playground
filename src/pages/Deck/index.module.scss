@@ -39,6 +39,7 @@
     position: relative;
     overflow: hidden;
     padding: 1rem 0;
+    // cursor: none;
 
     &:hover {
         box-shadow: 1px 1px 25px 10px var(--blue-lightsaber);
@@ -67,4 +68,7 @@
     font-size: 1.5rem;
     padding: 1rem 3rem;
     text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    cursor: default;
 }

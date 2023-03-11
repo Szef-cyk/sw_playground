@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
 
 :root {
-  --bg-color: #00204a;
-  --var-color: #005792;
-  --light-color: #a5e2ff;
-  --accent-color: #fdb44b;
-  --accent-lighter-color: #fddfa5;
+  --bg-color: rgb(0, 32, 74);
+  --bg-color-rgb: 0, 32, 74;
+  --var-color: rgb(0, 87, 146);
+  --light-color: rgb(165, 226, 255);
+  --accent-color: rgb(253, 180, 75);
+  --accent-lighter-color: rgb(253, 223, 165);
   --sith-color: rgb(144, 1, 1);
   --sith-bg-color: rgb(222, 63, 63);
   --jedi-color: #003780;
   --white-color: rgba(252, 250, 246, 1);
+  --white-color-rgb: 252, 250, 246;
   --text-color: #707070;
   --blue-lightsaber: rgba(63, 116, 238, 0.625);
   --green-lightsaber: rgba(82, 210, 53, 0.625);

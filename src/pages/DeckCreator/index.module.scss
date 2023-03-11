@@ -1,0 +1,55 @@
+@import '../../styles/mixins.scss';
+
+.container {
+    // height: 140vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translate(0, 2rem);
+}
+
+.headingContainer {
+    width: 25%;
+    text-align: center;
+    background: rgba(var(--bg-color-rgb), 0.7);
+    margin: 0 0 5rem;
+}
+
+.heading {
+    font-weight: normal;
+    color: var(--accent-color);
+    padding: 0 1rem;
+}
+
+//Choosen Cards
+.choosenCards {
+    // transform: translate(0, 5rem);
+    height: var(--playedCardHeight);
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 0 3.5rem;
+}
+
+.card {
+    width: var(--playedCardWidth);
+    color: white;
+    background: rgba(var(--white-color-rgb), 0.3);
+    border: 1px solid var(--accent-color);
+}
+
+.button {
+
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    width: 8rem;
+    height: 4rem;
+    margin: auto;
+}
+
+//Cards Available
+
+.cardsContainer {
+    display: flex;
+}

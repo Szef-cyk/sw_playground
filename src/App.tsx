@@ -7,6 +7,7 @@ import Play from './pages/Play';
 import styles from './app.module.scss'
 import homeBackground from './assets/homeBackground.jpg'
 import Board from './pages/Board/board';
+import DeckCreator from './pages/DeckCreator';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/deck" element={<Deck />} />
           <Route path="/play" element={<Play />} />
           <Route path="/board" element={<Board />} />
+          <Route path="/deckCreator" element={<DeckCreator />} />
           <Route path="*" element={<>Ta strona nie istnieje</>} />
         </Routes>
       </div>

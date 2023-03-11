@@ -1,10 +1,10 @@
-import React from 'react'
 import { selectDeckOne } from '../../redux/selectors'
 import { useSelector } from 'react-redux'
 import styles from './index.module.scss'
 import Card from '../../components/Card'
 import calculateDeckMargin from '../../utils/calculateDeckMargin'
 import calculateContainerMargin from '../../utils/calculateContainerMargin'
+import { Link } from 'react-router-dom'
 
 const Deck = () => {
     const deck = useSelector(selectDeckOne)
@@ -23,7 +23,7 @@ const Deck = () => {
             </div>
             <div className={styles.btnContainer}>
                 <button className={styles.button}>
-                    <div className={styles.btnHeading}>Create New Deck</div>
+                    <Link to='/deckCreator' className={styles.btnHeading}>Create New Deck</Link>
                 </button>
             </div>
         </>

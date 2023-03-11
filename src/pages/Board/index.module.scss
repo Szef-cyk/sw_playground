@@ -1,7 +1,6 @@
 @import "../../styles/mixins.scss";
 
 .background {
-    height: 100vh;
     background-position: center;
     overflow: hidden;
     position: absolute;
@@ -13,7 +12,6 @@
 
 .boardContainer {
     position: absolute;
-    // @include offSetValue;
     top: 13rem;
     padding-top: 10vh;
     padding-left: 10vh;
@@ -101,7 +99,6 @@ $card-opacity: 30%;
 }
 
 .button {
-    // border: none;
     background-color: var(--bg-color);
     color: var(--accent-color);
     font-size: 1.3rem;
