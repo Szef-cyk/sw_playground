@@ -13,11 +13,18 @@ const Deck = () => {
     const containerMargin = calculateContainerMargin(deckOne.length)
     return (
         <>
-            <div className={styles.heading}>YOUR DECK:</div>
+            <div className={styles.containerHeading}>
+                <h1 className={styles.heading}>Your Cards</h1>
+            </div>
             <div className={styles.deckContainer} style={{ margin: containerMargin }}>
                 {deckOne.map((character) => {
                     return <Card key={character.id} {...character} margin={margin} />
                 })}
+            </div>
+            <div className={styles.btnContainer}>
+                <button className={styles.button}>
+                    <div className={styles.btnHeading}>Create New Deck</div>
+                </button>
             </div>
         </>
     )

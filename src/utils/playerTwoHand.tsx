@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAttack, selectDeckTwo, selectGame, selectPlayedCardsOne, selectPlayedCardsTwo, } from '../redux/selectors'
 import styles from './index.module.scss'
@@ -6,7 +6,7 @@ import calculateDeckMargin from './calculateDeckMargin'
 import calculateContainerMargin from './calculateContainerMargin'
 import { Character, Player } from '../redux/features/types/types'
 import CardBack from '../components/Card/cardBack'
-import { AttackTwo, FirstTurn, OneLost, PlayedCardsTwo, PlayerOneTurn, PlayerPointLost, PlayerPoints, PlayerTwoTurn, Reset, Tie, TwoLost } from '../redux/actions'
+import { AttackTwo, PlayedCardsTwo, PlayerOneTurn, PlayerPointLost, PlayerPoints } from '../redux/actions'
 
 const PlayerTwoHand = () => {
     const dispatch = useDispatch();
@@ -17,10 +17,6 @@ const PlayerTwoHand = () => {
     const game = useSelector(selectGame)
     const [hand, setHand] = useState<Character[]>(deck)
     const [selectedCard, setSelectedCard] = useState<Character>();
-    const playerOneAttack = attack.playerOne
-    const playerTwoAttack = attack.playerTwo
-
-
 
     useEffect(() => {
         if (selectedCard || !hand.length) return console.log('empty hand');
@@ -55,7 +51,8 @@ const PlayerTwoHand = () => {
 
     useEffect(() => {
         if (game.turn.one === undefined) return console.log;
-        if (game.turn.one || !hand.length) return console.log('the end');
+        if (!hand.length) return console.log('the end');
+        if (game.turn.one) return console.log;
         dispatch(PlayerPoints(Player.TWO))
         setSelectedCard(undefined);
     }, [game])
